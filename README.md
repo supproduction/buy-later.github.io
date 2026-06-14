@@ -50,6 +50,24 @@ fails, a small static list in `src/data/demo-products.ts` is used instead. Per t
 product's anti-impulse positioning, there is deliberately **no fake scarcity**
 ("only N left"), no countdowns, and no fake discounts.
 
+### Mindful community layer (simulated, no backend)
+To give a reason to return without betraying the anti-impulse mission, the app adds
+an engagement layer that is **reframed away from FOMO** and **clearly labelled as
+simulated sample data**:
+- **Product detail page** (`/products/:id`) with a **seller "ships from" city** on a
+  mini-map, a mindful demand signal (*"N people are cooling off on this"* — not
+  "N want it"), and **"second thoughts"** reflections (sample + your own, with an
+  optional *"price I'd actually consider"*).
+- **Watchlist** ("Watch & cool off") — a local list to reconsider later; no emails,
+  no real notifications.
+- **Feed** (`/feed`) — most-reconsidered items, recent (simulated) community
+  decisions, and your real saved/avoided impact.
+
+All counts, reflections, and seller cities are **deterministically derived from the
+product id** (`src/lib/community.ts`) so they're stable, and every surface carries a
+"Simulated community · sample data" label. No backend, no real users, no fabricated
+social proof presented as real.
+
 ### Simulated delivery map
 Checkout collects only **city + country** (no street, postcode, phone, or name).
 `src/data/locations.ts` holds a small static city→coordinate map (10 EU cities) plus
