@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { PRODUCT_CATEGORIES, type ProductCategory } from '../../types/product';
 import { PageHeader } from '../../components/ui/PageHeader';
 import { TransparencyNotice } from '../../components/ui/TransparencyNotice';
+import { Select } from '../../components/ui/Select';
 import { useProductStore } from '../../stores/product.store';
 import { useCartStore } from '../../stores/cart.store';
 import { useTranslation } from '../../i18n';
@@ -139,18 +140,13 @@ export default function AddItemPage() {
             <label htmlFor="category" className="label">
               {t('addItem.category')}
             </label>
-            <select
+            <Select
               id="category"
-              className="input"
+              ariaLabel={t('addItem.category')}
               value={category}
-              onChange={(e) => setCategory(e.target.value as ProductCategory)}
-            >
-              {PRODUCT_CATEGORIES.map((c) => (
-                <option key={c} value={c}>
-                  {t(`categories.${c}`)}
-                </option>
-              ))}
-            </select>
+              onChange={(v) => setCategory(v as ProductCategory)}
+              options={PRODUCT_CATEGORIES.map((c) => ({ value: c, label: t(`categories.${c}`) }))}
+            />
           </div>
         </div>
 

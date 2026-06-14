@@ -29,4 +29,11 @@ export interface Product {
   productUrl?: string;
   tags?: string[];
   source: ProductSource;
+  /** Average rating 0–5 (from the mock catalog). Informational only. */
+  rating?: number;
+  /**
+   * Reference "typical retail" price, shown struck-through for context.
+   * NOT a limited-time discount — purely informational, never urgency.
+   */
+  originalPrice?: number;
 }

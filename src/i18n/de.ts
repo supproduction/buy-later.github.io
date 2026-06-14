@@ -123,6 +123,11 @@ export const de: Dictionary = {
     addToCart: 'In den Warenkorb',
     virtualBuy: 'Jetzt virtuell kaufen',
     yourItem: 'Dein Artikel',
+    noRealMoney: 'Kein echtes Geld belastet',
+    popular: 'Beliebt',
+    ratingAria: 'Bewertet mit {rating} von 5',
+    refPriceShort: 'UVP',
+    refPriceTitle: 'Referenz-/Listenpreis — nur zur Information, kein Rabatt',
   },
   addItem: {
     title: 'Eigenen Artikel hinzufügen',

@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { PRODUCT_CATEGORIES, type ProductCategory } from '../../types/product';
 import { PageHeader } from '../../components/ui/PageHeader';
 import { TransparencyNotice } from '../../components/ui/TransparencyNotice';
+import { Select } from '../../components/ui/Select';
 import { ProductCard } from '../../components/product/ProductCard';
 import { EmptyState } from '../../components/ui/EmptyState';
 import { useProducts } from '../../hooks/useProducts';
@@ -16,7 +17,20 @@ export default function CatalogPage() {
   const { addToCart, virtualBuyNow } = useVirtualBuy();
   const { t } = useTranslation();
 
-  const [query, setQuery] = useState('');
+  // Search lives in the URL (?q=) so the header search bar and this page stay
+  // in sync and queries are shareable.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('q') ?? '';
+  const setQuery = (value: string) =>
+    setSearchParams(
+      (prev) => {
+        if (value) prev.set('q', value);
+        else prev.delete('q');
+        return prev;
+      },
+      { replace: true },
+    );
+
   const [category, setCategory] = useState<ProductCategory | 'all'>('all');
   const [sort, setSort] = useState<SortOption>('relevance');
 
@@ -70,34 +84,32 @@ export default function CatalogPage() {
           <label htmlFor="category" className="label">
             {t('catalog.categoryLabel')}
           </label>
-          <select
+          <Select
             id="category"
-            className="input"
+            ariaLabel={t('catalog.categoryLabel')}
             value={category}
-            onChange={(e) => setCategory(e.target.value as ProductCategory | 'all')}
-          >
-            <option value="all">{t('catalog.allCategories')}</option>
-            {PRODUCT_CATEGORIES.map((c) => (
-              <option key={c} value={c}>
-                {t(`categories.${c}`)}
-              </option>
-            ))}
-          </select>
+            onChange={(v) => setCategory(v as ProductCategory | 'all')}
+            options={[
+              { value: 'all', label: t('catalog.allCategories') },
+              ...PRODUCT_CATEGORIES.map((c) => ({ value: c, label: t(`categories.${c}`) })),
+            ]}
+          />
         </div>
         <div className="sm:w-44">
           <label htmlFor="sort" className="label">
             {t('catalog.sortLabel')}
           </label>
-          <select
+          <Select
             id="sort"
-            className="input"
+            ariaLabel={t('catalog.sortLabel')}
             value={sort}
-            onChange={(e) => setSort(e.target.value as SortOption)}
-          >
-            <option value="relevance">{t('catalog.sortFeatured')}</option>
-            <option value="price-asc">{t('catalog.sortAsc')}</option>
-            <option value="price-desc">{t('catalog.sortDesc')}</option>
-          </select>
+            onChange={(v) => setSort(v as SortOption)}
+            options={[
+              { value: 'relevance', label: t('catalog.sortFeatured') },
+              { value: 'price-asc', label: t('catalog.sortAsc') },
+              { value: 'price-desc', label: t('catalog.sortDesc') },
+            ]}
+          />
         </div>
       </div>
 
@@ -111,7 +123,7 @@ export default function CatalogPage() {
           action={{ to: '/products/new', label: t('catalog.emptyCta') }}
         />
       ) : (
-        <ul className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {visible.map((product) => (
             <li key={product.id}>
               <ProductCard
@@ -131,7 +143,7 @@ export default function CatalogPage() {
 function SkeletonGrid() {
   return (
     <ul
-      className="grid grid-cols-2 gap-4 lg:grid-cols-3"
+      className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
       aria-busy="true"
       aria-label="Loading products"
     >

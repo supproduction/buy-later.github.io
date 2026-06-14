@@ -17,7 +17,7 @@ export function AppLayout() {
         {t('footer.skip')}
       </a>
       <Header />
-      <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 pb-28 pt-6 sm:pb-12">
+      <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 pb-28 pt-6 md:pb-12">
         <Suspense fallback={<RouteFallback />}>
           <Outlet />
         </Suspense>

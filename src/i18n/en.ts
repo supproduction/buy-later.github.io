@@ -127,6 +127,11 @@ export const en = {
     addToCart: 'Add to cart',
     virtualBuy: 'Virtual buy now',
     yourItem: 'Your item',
+    noRealMoney: 'No real money charged',
+    popular: 'Popular',
+    ratingAria: 'Rated {rating} out of 5',
+    refPriceShort: 'ref.',
+    refPriceTitle: 'Reference retail price — informational only, not a discount',
   },
   addItem: {
     title: 'Add your own item',

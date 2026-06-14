@@ -21,6 +21,8 @@ interface DummyProduct {
   category: string;
   thumbnail?: string;
   brand?: string;
+  rating?: number;
+  discountPercentage?: number;
 }
 
 /** Map DummyJSON's many categories onto our six. Unmapped ones are dropped. */
@@ -55,24 +57,32 @@ const CATEGORY_MAP: Record<string, ProductCategory> = {
 export function mapDummyProduct(d: DummyProduct): Product | null {
   const category = CATEGORY_MAP[d.category];
   if (!category) return null;
+  const price = Math.round(d.price * 100) / 100;
+  // Reconstruct the pre-discount "reference" price from DummyJSON's percentage.
+  // Informational context only — never framed as a limited-time deal.
+  const disc = d.discountPercentage ?? 0;
+  const originalPrice =
+    disc > 0 ? Math.round((price / (1 - disc / 100)) * 100) / 100 : undefined;
   return {
     id: `demo-dj-${d.id}`,
     title: d.title,
     // Keep card copy tidy.
     description: d.description?.trim() || 'Demo product for simulation.',
     // Prices are illustrative only; we keep the app's EUR convention.
-    price: Math.round(d.price * 100) / 100,
+    price,
     currency: 'EUR',
     category,
     imageUrl: d.thumbnail,
     storeName: d.brand?.trim() || 'Demo Marketplace',
     tags: [d.category],
     source: 'demo',
+    rating: typeof d.rating === 'number' ? Math.round(d.rating * 10) / 10 : undefined,
+    originalPrice,
   };
 }
 
 const ENDPOINT =
-  'https://dummyjson.com/products?limit=150&select=title,description,price,category,thumbnail,brand';
+  'https://dummyjson.com/products?limit=150&select=title,description,price,category,thumbnail,brand,rating,discountPercentage';
 
 /** Fetch and map the live demo catalog. Throws on network/parse failure. */
 export async function fetchRemoteProducts(signal?: AbortSignal): Promise<Product[]> {
