@@ -40,6 +40,15 @@ React 18 · Vite 5 · TypeScript (strict) · React Router 6 · Zustand 4 (with
 `persist` → localStorage) · Tailwind CSS 3 · Vitest + Testing Library. No backend,
 no payment integrations, no analytics SDKs, no auth.
 
+### Internationalization (en / de / pt)
+A dependency-free i18n layer lives in [src/i18n/](src/i18n/): `en.ts` defines the
+shape, and `de.ts` / `pt.ts` are typed as `typeof en` so a missing key is a
+compile error. `useTranslation()` returns `t(key, params)` plus locale-aware
+`formatCurrency` / `formatDate` / `timeUntil` (via `Intl`). Language is detected
+from the browser, switchable from the header or Settings, and persisted to
+localStorage. The active language also sets `<html lang>`. Add a language by
+creating a new dictionary and registering it in `LANGUAGES`.
+
 ---
 
 ## Project structure
