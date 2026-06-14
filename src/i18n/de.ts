@@ -430,6 +430,8 @@ export const de: Dictionary = {
     insightsTitle: 'Erkenntnisse',
     recentAvoidedTitle: 'Kürzlich vermieden',
     seeAllAvoided: 'Alle vermiedenen ansehen →',
+    avoidedMapTitle: 'Wo du widerstanden hast',
+    avoidedMapNote: 'Verkäuferstädte vermiedener Käufe (illustrativ).',
     deliveryTitle: 'Liefervorschau (optional)',
     deliveryBody:
       'Magst du das ganze Ritual? Du kannst Checkout und Lieferung weiterhin durchspielen — eine optionale Art, die Pause zu verlängern. Sie ist zweitrangig gegenüber der Gewohnheit, die du aufbaust.',

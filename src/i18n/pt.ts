@@ -430,6 +430,8 @@ export const pt: Dictionary = {
     insightsTitle: 'Insights',
     recentAvoidedTitle: 'Evitados recentemente',
     seeAllAvoided: 'Ver todos os evitados →',
+    avoidedMapTitle: 'Onde resististe',
+    avoidedMapNote: 'Cidades de vendedores de compras evitadas (ilustrativo).',
     deliveryTitle: 'Pré-visualização de entrega (opcional)',
     deliveryBody:
       'Preferes o ritual completo? Há uma pré-visualização opcional de finalização e entrega — uma forma divertida de prolongar a pausa. É secundário face ao hábito que estás a criar.',

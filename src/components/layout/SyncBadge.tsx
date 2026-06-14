@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useSyncStatus } from '../../stores/sync-status.store';
 import { useTranslation } from '../../i18n';
 
@@ -8,7 +9,10 @@ const CONFIG = {
   error: { key: 'sync.error', dot: 'bg-rose-500', text: 'text-rose-600', pulse: false },
 } as const;
 
-/** Compact cloud-sync status pill. Hidden entirely when Supabase isn't configured. */
+/**
+ * Compact cloud-sync status pill, clickable → Settings (Account & sync).
+ * Hidden entirely when Supabase isn't configured.
+ */
 export function SyncBadge() {
   const status = useSyncStatus((s) => s.status);
   const message = useSyncStatus((s) => s.message);
@@ -19,13 +23,14 @@ export function SyncBadge() {
   const label = t(c.key);
 
   return (
-    <span
-      className="inline-flex items-center gap-1.5 rounded-full px-2 py-1"
+    <Link
+      to="/settings"
+      className="inline-flex items-center gap-1.5 rounded-full px-2 py-1 transition-colors hover:bg-ink-100"
       title={message || label}
-      aria-label={message || label}
+      aria-label={`${label} — ${t('account.title')}`}
     >
       <span className={`h-2 w-2 rounded-full ${c.dot} ${c.pulse ? 'animate-pulse' : ''}`} />
       <span className={`hidden text-xs font-medium sm:inline ${c.text}`}>{label}</span>
-    </span>
+    </Link>
   );
 }

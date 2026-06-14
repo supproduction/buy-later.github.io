@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { StatCard } from '../../components/ui/StatCard';
 import { TransparencyNotice } from '../../components/ui/TransparencyNotice';
@@ -11,6 +12,9 @@ import {
 } from '../../lib/insights';
 import { HOW_IT_WORKS_STEPS } from '../landing/steps';
 import { useTranslation } from '../../i18n';
+
+// Leaflet is heavy — only load the map chunk when there's something to show.
+const AvoidedMap = lazy(() => import('../../components/dashboard/AvoidedMap'));
 
 export default function DashboardPage() {
   const orders = useOrderStore((s) => s.orders);
@@ -155,6 +159,24 @@ export default function DashboardPage() {
                   );
                 })}
               </ul>
+            </section>
+          )}
+
+          {/* Where avoided purchases "come from" */}
+          {avoided.length > 0 && (
+            <section className="card p-5" aria-label={t('dashboard.avoidedMapTitle')}>
+              <h2 className="mb-3 text-base font-semibold text-ink-900">
+                {t('dashboard.avoidedMapTitle')}
+              </h2>
+              <Suspense
+                fallback={
+                  <div className="grid h-64 place-items-center rounded-xl bg-ink-50 text-sm text-ink-400">
+                    {t('common.loading')}
+                  </div>
+                }
+              >
+                <AvoidedMap orders={avoided} />
+              </Suspense>
             </section>
           )}
 

@@ -429,6 +429,8 @@ export const en = {
     insightsTitle: 'Insights',
     recentAvoidedTitle: 'Recently avoided',
     seeAllAvoided: 'See all avoided →',
+    avoidedMapTitle: 'Where you held back',
+    avoidedMapNote: 'Seller cities of purchases you avoided (illustrative).',
     deliveryTitle: 'Delivery preview (optional)',
     deliveryBody:
       'Prefer the full ritual? There’s an optional checkout-and-delivery preview — a playful way to stretch the pause. It’s secondary to the habit you’re building.',
