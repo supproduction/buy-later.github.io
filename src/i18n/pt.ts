@@ -413,9 +413,8 @@ export const pt: Dictionary = {
     recentAvoidedTitle: 'Evitados recentemente',
     seeAllAvoided: 'Ver todos os evitados →',
     deliveryTitle: 'Pré-visualização de entrega (opcional)',
-    deliveryBodyDummy: '',
     deliveryBody:
-      'Preferes o ritual completo? Ainda podes simular a finalização e a entrega — uma forma opcional de prolongar a pausa. É secundário face ao hábito que estás a criar.',
+      'Preferes o ritual completo? Há uma pré-visualização opcional de finalização e entrega — uma forma divertida de prolongar a pausa. É secundário face ao hábito que estás a criar.',
     deliveryCta: 'Ver pedidos',
     howTitle: 'Como funciona',
     onboardingTitle: 'Pausa antes de comprar.',

@@ -413,7 +413,7 @@ export const en = {
     seeAllAvoided: 'See all avoided →',
     deliveryTitle: 'Delivery preview (optional)',
     deliveryBody:
-      'Prefer the full ritual? You can still simulate checkout and delivery — an optional way to stretch the pause. It is secondary to the habit you are building.',
+      'Prefer the full ritual? There’s an optional checkout-and-delivery preview — a playful way to stretch the pause. It’s secondary to the habit you’re building.',
     deliveryCta: 'View orders',
     howTitle: 'How it works',
     onboardingTitle: 'Pause before you buy.',
