@@ -347,6 +347,18 @@ export const pt: Dictionary = {
     langTitle: 'Idioma',
     langBody: 'Escolhe o idioma da interface do BuyLater.',
   },
+  account: {
+    title: 'Conta & sincronização',
+    body: 'Inicia sessão para guardar os teus dados e sincronizá-los entre dispositivos. Opcional — tudo funciona sem conta.',
+    email: 'Email',
+    emailPlaceholder: 'tu@exemplo.com',
+    sendLink: 'Enviar link mágico',
+    linkSent: 'Vê na tua caixa de entrada o link de início de sessão.',
+    signedInAs: 'Sessão iniciada como {email}',
+    syncedNote: 'Os teus dados sincronizam automaticamente enquanto tens sessão iniciada.',
+    signOut: 'Terminar sessão',
+    error: 'Algo correu mal. Tenta novamente.',
+  },
   notFound: {
     title: 'Página não encontrada',
     cardTitle: 'Essa página não existe',

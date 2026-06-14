@@ -1,10 +1,17 @@
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
+import { SyncManager } from '../components/SyncManager';
 
 /**
  * App-wide providers. Zustand stores are module singletons (no context
- * provider needed), so for the MVP this just wires the router.
+ * provider needed). SyncManager is a headless cloud-sync driver (no-op unless
+ * Supabase is configured and a user is signed in).
  */
 export function Providers() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <SyncManager />
+      <RouterProvider router={router} />
+    </>
+  );
 }

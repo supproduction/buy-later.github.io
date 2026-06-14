@@ -23,3 +23,12 @@ dist
 # Test / coverage
 coverage
 .vercel
+
+# Env / secrets (never commit keys or DB passwords)
+.env
+.env.*
+!.env.example
+
+# Supabase CLI
+supabase/.temp
+supabase/.branches

@@ -346,6 +346,18 @@ export const en = {
     langTitle: 'Language',
     langBody: 'Choose the language for the BuyLater interface.',
   },
+  account: {
+    title: 'Account & sync',
+    body: 'Sign in to back up your data and sync it across devices. Optional — everything works without an account.',
+    email: 'Email',
+    emailPlaceholder: 'you@example.com',
+    sendLink: 'Send magic link',
+    linkSent: 'Check your inbox for a sign-in link.',
+    signedInAs: 'Signed in as {email}',
+    syncedNote: 'Your data syncs automatically while signed in.',
+    signOut: 'Sign out',
+    error: 'Something went wrong. Please try again.',
+  },
   notFound: {
     title: 'Page not found',
     cardTitle: "That page doesn't exist",

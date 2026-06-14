@@ -347,6 +347,18 @@ export const de: Dictionary = {
     langTitle: 'Sprache',
     langBody: 'Wähle die Sprache für die BuyLater-Oberfläche.',
   },
+  account: {
+    title: 'Konto & Sync',
+    body: 'Melde dich an, um deine Daten zu sichern und geräteübergreifend zu synchronisieren. Optional — alles funktioniert auch ohne Konto.',
+    email: 'E-Mail',
+    emailPlaceholder: 'du@beispiel.de',
+    sendLink: 'Magischen Link senden',
+    linkSent: 'Sieh in deinem Postfach nach dem Anmeldelink.',
+    signedInAs: 'Angemeldet als {email}',
+    syncedNote: 'Deine Daten werden im angemeldeten Zustand automatisch synchronisiert.',
+    signOut: 'Abmelden',
+    error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
+  },
   notFound: {
     title: 'Seite nicht gefunden',
     cardTitle: 'Diese Seite existiert nicht',
