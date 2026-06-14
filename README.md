@@ -227,5 +227,7 @@ pretends to sell the item directly.
 
 ## License
 
-[MIT](LICENSE) © 2026 Oleksii Bilan. Provided for portfolio/demo purposes; the
-"BuyLater" concept and copy are simulation-only and not a real commercial service.
+[MIT](LICENSE) © 2026 Oleksii Bilan. You're free to run BuyLater as a real product
+under the MIT license. Note that BuyLater is a mindful-spending tool: by design it
+**never processes payments and never sells goods** — that's the point, not a
+limitation.
