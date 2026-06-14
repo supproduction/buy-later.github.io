@@ -1,45 +1,41 @@
-# BuyLater 🧪
+# BuyLater 🟢
 
-**A virtual purchase simulator and impulse-purchase cooling-off tool.**
+**A mindful-spending tool. Pause before you buy.**
 
-BuyLater is **not a real shop**. No real payments, orders, or deliveries happen.
-It lets you simulate the satisfying ritual of buying something — checkout, order
-confirmation, delivery tracking — *without spending money*, then nudges you to
-decide later, with a clear head, whether you still want it. It shows you how much
-you saved by waiting.
+BuyLater helps you **reduce impulse spending**. Add the thing you almost bought,
+give the urge a cooling-off period, and decide later with a clear head — then
+track **the money you chose not to spend**. It never takes payment and never sells
+anything.
 
-> This must never be mistaken for e-commerce. Every flow is explicitly labelled as
-> a **simulation**, and transparency notices are placed wherever a user might
-> otherwise expect a real transaction.
+> Not BNPL — the opposite. Where Klarna/Affirm make spending frictionless,
+> BuyLater makes *not* spending rewarding. The headline is always **money saved**.
 
 ---
 
 ## What was built
 
-A mobile-first React SPA covering the full MVP flow:
+A mobile-first React SPA centred on the savings habit:
 
 | Area | Highlights |
 | --- | --- |
-| **Landing** | Hero ("Pause impulse purchases before they happen."), how-it-works, why-it-exists, strong transparency notice. |
-| **Catalog** | Live demo catalog (DummyJSON, ~150 items) + offline fallback; marketplace-style cards with star ratings, struck-through *reference* retail price (honest, not a discount), a gentle "Popular" tag, and a persistent "No real money charged" cue. Responsive 2/3/4-column grid, header + in-page search (URL-synced), category filter, price sort. |
-| **Add your own item** | Manual entry (no scraping) with validation: name required, price > 0, valid http(s) URLs. |
-| **Cart** | Quantity controls, remove, live total, strong "virtual order" transparency box. |
-| **Virtual checkout** | Playful **delivery vibe** picker + **Virtual delivery location** (city/country only — never street/postcode/phone/name), **demo mode** toggle, confirm → creates order, clears cart. |
-| **Order tracking** | 6-stage simulated timeline derived purely from elapsed time, **plus a simulated delivery map** (Leaflet): a courier route from a fictional warehouse to the chosen city, advancing with status. Explicitly marked as a simulation. |
-| **Cooling-off decision** | "Do you still want this?" → *No* (records savings), *Maybe later* (extends review +7 days), *Yes* (optional external link). |
-| **Stats** | Money saved, purchases avoided, virtual orders/spend, items still wanted, top categories (CSS bars), recent decisions. |
-| **Legal** | Privacy, Terms & Disclaimer, Settings with **Clear all my data**. |
-| **Navigation** | Desktop top bar + mobile bottom nav, live cart badge, custom accessible **Select** dropdowns everywhere (keyboard + type-ahead). |
+| **Dashboard (home)** | Money-first: a large **Money saved** KPI, plus Purchases avoided / Items under review / Still wanted. **Streak** ("N-day streak"), data-driven **insights**, recently-avoided preview, and week/month/year savings. Onboarding value-prop for first-time visitors; how-it-works and delivery preview kept below the fold. |
+| **Avoided purchases** (`/avoided-purchases`) | Cumulative **Total saved** hero + a card per avoided item: image, title, category, saved amount, reference price, "avoided N days ago", and **impulse score**. |
+| **Catalog** | URL-first: a prominent **"Add what you almost bought"** action; the demo catalog (DummyJSON + offline fallback) is the secondary "common temptations" grid. Cards show ratings, reference price, an **impulse-score** chip, a "No real money charged" cue, and a watch toggle. Search (URL-synced) + category filter + price sort. |
+| **Add what you almost bought** | Paste-a-link-first form (the link is stored), then name + price (validated). No scraping. |
+| **Cooling-off flow** | Pause → cooling-off period → decision. "Do you still want this?" → *No* (celebration: "You just saved €X"), *Maybe later* (extends review), *Yes* (optional original-product link). |
+| **Statistics** | Money saved this week/month/year, a 6-month savings **bar chart**, top categories, counts, recent decisions. |
+| **Impulse score** | 0–100 heuristic (price + category) with Low/Medium/High bands, shown on cards, detail, and avoided items. |
+| **Delivery preview (secondary)** | Optional 6-stage timeline derived from elapsed time — explicitly framed as a way to stretch the pause, not the point. |
+| **Legal / Settings** | Privacy, Terms & Disclaimer, Settings with **Clear all my data**. |
+| **Navigation** | Focused primary nav (Home · Products · Avoided · Statistics); Cart is a secondary header icon. Custom accessible **Select** dropdowns; i18n (en/de/pt). |
 
 **Order numbers** look like `BL-2026-000001`. **Cooling-off** is 7 days by default
-(5 minutes in demo mode). Statuses progress on the spec's seconds-based pacing in
-demo mode, and over hours in normal mode.
+(5 minutes in demo mode).
 
 ### Tech stack
 React 18 · Vite 5 · TypeScript (strict) · React Router 6 · Zustand 4 (with
-`persist` → localStorage) · Tailwind CSS 3 · Leaflet + react-leaflet (lazy-loaded
-map) · Vitest + Testing Library. No backend, no payment integrations, no analytics
-SDKs, no auth.
+`persist` → localStorage) · Tailwind CSS 3 · Vitest + Testing Library. No backend,
+no payment integrations, no analytics SDKs, no auth.
 
 ### Live demo catalog
 The catalog is fetched at runtime from [DummyJSON](https://dummyjson.com) — a free,
@@ -50,33 +46,19 @@ fails, a small static list in `src/data/demo-products.ts` is used instead. Per t
 product's anti-impulse positioning, there is deliberately **no fake scarcity**
 ("only N left"), no countdowns, and no fake discounts.
 
-### Mindful community layer (simulated, no backend)
-To give a reason to return without betraying the anti-impulse mission, the app adds
-an engagement layer that is **reframed away from FOMO** and **clearly labelled as
-simulated sample data**:
-- **Product detail page** (`/products/:id`) with a **seller "ships from" city** on a
-  mini-map, a mindful demand signal (*"N people are cooling off on this"* — not
-  "N want it"), and **"second thoughts"** reflections (sample + your own, with an
-  optional *"price I'd actually consider"*).
-- **Watchlist** ("Watch & cool off") — a local list to reconsider later; no emails,
-  no real notifications.
-- **Feed** (`/feed`) — most-reconsidered items, recent (simulated) community
-  decisions, and your real saved/avoided impact.
+### Insights, streak & impulse score
+Pure, unit-tested derivations in `src/lib/`:
+- **`insights.ts`** — savings bucketed by week/month/year and by calendar month,
+  the current "days without an impulse purchase" **streak**, and simple text
+  **insights** (top avoided category, category share, month-over-month, weekend
+  pattern). No AI.
+- **`impulse-score.ts`** — a 0–100 heuristic from price + category with Low/Medium/
+  High bands.
 
-All counts, reflections, and seller cities are **deterministically derived from the
-product id** (`src/lib/community.ts`) so they're stable, and every surface carries a
-"Simulated community · sample data" label. No backend, no real users, no fabricated
-social proof presented as real.
-
-### Simulated delivery map
-Checkout collects only **city + country** (no street, postcode, phone, or name).
-`src/data/locations.ts` holds a small static city→coordinate map (10 EU cities) plus
-country-level fallbacks; unknown cities still create an order and fall back to a
-country approximation. The order page renders a Leaflet route from a fictional
-"Virtual warehouse" to the city, with a courier marker that advances with status.
-**No browser geolocation, no location permission, no precise user coordinates are
-stored** — only the coarse city/country names, resolved to our own approximate
-coordinates at render time.
+> An earlier exploration added a simulated "community" layer (counts, reflections,
+> feed) and a delivery/seller map. These were **removed** during the mindful-spending
+> repositioning: fabricated social proof and a delivery-tracking gimmick undercut a
+> tool whose whole pitch is honesty about money.
 
 ### Internationalization (en / de / pt)
 A dependency-free i18n layer lives in [src/i18n/](src/i18n/): `en.ts` defines the
@@ -95,30 +77,32 @@ creating a new dictionary and registering it in `LANGUAGES`.
 src/
   app/            App.tsx, router.tsx (lazy routes), providers.tsx
   components/
-    layout/       Header (search), BottomNav, Footer, AppLayout, LanguageSwitcher, …
-    ui/           Select (custom dropdown), Icon, PageHeader, EmptyState, TransparencyNotice, SimulationBadge
-    product/      ProductCard, ProductImage, StarRating
-    order/        StatusTimeline, OrderCard, DecisionPanel, DeliveryMap (Leaflet, lazy)
-  data/           demo-products.ts (fallback), locations.ts (map coordinates)
+    layout/       Header (search + cart icon), BottomNav, Footer, AppLayout, LanguageSwitcher
+    ui/           Select (custom dropdown), StatCard, Icon, PageHeader, EmptyState, TransparencyNotice
+    product/      ProductCard, ProductImage, StarRating, ImpulseBadge, WatchButton
+    order/        StatusTimeline, OrderCard, DecisionPanel
+  data/           demo-products.ts (offline fallback)
   i18n/           index.ts (store + useTranslation), en.ts, de.ts, pt.ts
   features/
-    landing/      LandingPage, HowItWorksPage, steps.ts
-    products/     CatalogPage, AddItemPage
+    dashboard/    DashboardPage (home)
+    avoided/      AvoidedPurchasesPage
+    landing/      HowItWorksPage, steps.ts
+    products/     CatalogPage, AddItemPage, ProductDetailPage
     cart/         CartPage, CheckoutPage
     orders/       OrdersPage, OrderDetailPage
     stats/        StatsPage
     legal/        PrivacyPage, TermsPage, SettingsPage, NotFoundPage, Prose
   hooks/          useProducts, useVirtualBuy, useOrderTicker
-  lib/            storage, currency, dates, ids, order (pure logic), product-api, analytics
-  stores/         product.store, cart.store, order.store
+  lib/            storage, currency, dates, ids, order, insights, impulse-score, product-api, analytics
+  stores/         product.store, cart.store, order.store, community.store (watchlist)
   types/          product, cart, order, stats
   styles/         globals.css
 ```
 
 **Architecture:** components render UI, Zustand stores hold state + persistence,
-and business logic lives in pure functions under `lib/` (`order.ts`) so it can be
-unit-tested without React. Order **status is derived from time**, not stored as a
-ticking value, which keeps it correct after a refresh.
+and business logic lives in pure, unit-tested functions under `lib/`
+(`order.ts`, `insights.ts`, `impulse-score.ts`). Order **status is derived from
+time**, not stored as a ticking value, so it stays correct after a refresh.
 
 ---
 
@@ -134,17 +118,20 @@ npm run dev        # http://localhost:5173
 ```bash
 npm run build      # type-check (tsc -b) + production build to dist/
 npm run preview    # serve the production build locally
-npm test           # run Vitest once (28 tests)
+npm test           # run Vitest once (43 tests)
 npm run test:watch # watch mode
 npm run lint       # type-check only (tsc --noEmit)
 ```
 
 ### Tests
-28 tests pass, covering:
+43 tests pass, covering:
 - **cart store** — add / increment / remove / update quantity / total + count selectors
 - **order logic** — create order (number format, cooling-off), compute status from `createdAt`, history backfill, refresh, frozen-after-decision
 - **order store** — incrementing order numbers, mark avoided → money saved, still-wanted excluded, maybe-later extends review
+- **insights** — savings by period/month, streak (since last give-in), generated insights
+- **impulse score** — band thresholds, category/price monotonicity, determinism
 - **storage** — missing data, invalid JSON, round-trip, single + full clear
+- **product-api** — DummyJSON mapping (category, reference price, fallbacks)
 
 ---
 
