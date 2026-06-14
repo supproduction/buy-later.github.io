@@ -21,3 +21,4 @@ dist-ssr
 
 # Test / coverage
 coverage
+.vercel

@@ -8,6 +8,8 @@ const LandingPage = lazy(() => import('../features/landing/LandingPage'));
 const HowItWorksPage = lazy(() => import('../features/landing/HowItWorksPage'));
 const CatalogPage = lazy(() => import('../features/products/CatalogPage'));
 const AddItemPage = lazy(() => import('../features/products/AddItemPage'));
+const ProductDetailPage = lazy(() => import('../features/products/ProductDetailPage'));
+const FeedPage = lazy(() => import('../features/feed/FeedPage'));
 const CartPage = lazy(() => import('../features/cart/CartPage'));
 const CheckoutPage = lazy(() => import('../features/cart/CheckoutPage'));
 const OrdersPage = lazy(() => import('../features/orders/OrdersPage'));
@@ -31,6 +33,8 @@ export const router = createBrowserRouter([
       { path: 'how-it-works', element: <HowItWorksPage /> },
       { path: 'products', element: <CatalogPage /> },
       { path: 'products/new', element: <AddItemPage /> },
+      { path: 'products/:productId', element: <ProductDetailPage /> },
+      { path: 'feed', element: <FeedPage /> },
       { path: 'cart', element: <CartPage /> },
       { path: 'checkout', element: <CheckoutPage /> },
       { path: 'orders', element: <OrdersPage /> },

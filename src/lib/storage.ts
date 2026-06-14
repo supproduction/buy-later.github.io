@@ -14,6 +14,7 @@ export const STORAGE_KEYS = {
   cart: `${APP_PREFIX}cart`,
   orders: `${APP_PREFIX}orders`,
   settings: `${APP_PREFIX}settings`,
+  community: `${APP_PREFIX}community`,
 } as const;
 
 export type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS];

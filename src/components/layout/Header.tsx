@@ -58,7 +58,7 @@ export function Header() {
         </form>
 
         <div className="flex shrink-0 items-center gap-2">
-          <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
             {NAV_ITEMS.map((item) => (
               <NavLink
                 key={item.to}

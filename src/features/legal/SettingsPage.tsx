@@ -7,6 +7,7 @@ import { track } from '../../lib/analytics';
 import { useProductStore } from '../../stores/product.store';
 import { useCartStore } from '../../stores/cart.store';
 import { useOrderStore } from '../../stores/order.store';
+import { useCommunityStore } from '../../stores/community.store';
 import { useTranslation } from '../../i18n';
 
 export default function SettingsPage() {
@@ -19,6 +20,7 @@ export default function SettingsPage() {
     useCartStore.setState({ items: [] });
     useProductStore.setState({ customProducts: [] });
     useOrderStore.getState().clearAll();
+    useCommunityStore.setState({ watch: [], reflections: {} });
     clearAppData();
     track('app_data_cleared');
     setConfirming(false);

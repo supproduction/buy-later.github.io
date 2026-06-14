@@ -1,7 +1,7 @@
 export interface NavItem {
   to: string;
   /** Translation key under `nav.*`. */
-  key: 'home' | 'products' | 'cart' | 'orders' | 'stats';
+  key: 'home' | 'products' | 'cart' | 'orders' | 'stats' | 'feed';
   /** Inline SVG path data for a simple 24x24 stroke icon. */
   icon: string;
 }
@@ -12,6 +12,11 @@ export const NAV_ITEMS: NavItem[] = [
     to: '/products',
     key: 'products',
     icon: 'M4 7h16M4 12h16M4 17h10',
+  },
+  {
+    to: '/feed',
+    key: 'feed',
+    icon: 'M4 6h16M4 12h16M4 18h10M19 17l2 2-2 2',
   },
   {
     to: '/cart',

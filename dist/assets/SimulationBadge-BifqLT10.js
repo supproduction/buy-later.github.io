@@ -1,0 +1,1 @@
+import{j as a}from"./index-qR4vQZZp.js";function i({className:s=""}){return a.jsxs("span",{className:`chip bg-amber-100 text-amber-800 ${s}`,title:"This is a simulation. No real purchase happens.",children:[a.jsx("span",{"aria-hidden":"true",className:"mr-1",children:"🧪"}),"Simulation"]})}export{i as S};
