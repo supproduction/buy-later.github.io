@@ -76,10 +76,10 @@ export default function DeliveryMap({ order }: { order: VirtualOrder }) {
         />
 
         <Marker position={[VIRTUAL_WAREHOUSE.lat, VIRTUAL_WAREHOUSE.lng]} icon={WAREHOUSE_ICON}>
-          <Tooltip direction="top">{t('orderDetail.mapWarehouse')}</Tooltip>
+          <Tooltip permanent direction="top">{t('orderDetail.mapWarehouse')}</Tooltip>
         </Marker>
         <Marker position={[coords.lat, coords.lng]} icon={CITY_ICON}>
-          <Tooltip direction="top">{t('orderDetail.mapCity')}</Tooltip>
+          <Tooltip permanent direction="top">{t('orderDetail.mapCity')}</Tooltip>
         </Marker>
         <Marker position={[courier.lat, courier.lng]} icon={COURIER_ICON}>
           <Tooltip direction="top">{t('orderDetail.mapCourier')}</Tooltip>

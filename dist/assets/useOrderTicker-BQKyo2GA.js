@@ -1,0 +1,1 @@
+import{r as s}from"./index-B4Uqe0xO.js";import{u as o}from"./order.store-ByFARnYn.js";function n(t=1e3){const r=o(e=>e.refreshStatuses);s.useEffect(()=>{r();const e=window.setInterval(r,t);return()=>window.clearInterval(e)},[r,t])}export{n as u};

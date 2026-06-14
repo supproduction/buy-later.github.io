@@ -15,6 +15,9 @@ import { useOrderStore } from '../../stores/order.store';
 import { useOrderTicker } from '../../hooks/useOrderTicker';
 import { useTranslation } from '../../i18n';
 
+// Leaflet is heavy — only load the map chunk on this page, on demand.
+const DeliveryMap = lazy(() => import('../../components/order/DeliveryMap'));
+
 const DELIVERED_INDEX = statusIndex('virtually_delivered');
 
 export default function OrderDetailPage() {
@@ -40,6 +43,7 @@ export default function OrderDetailPage() {
   }
 
   const vibe = DELIVERY_VIBES.find((v) => v.value === order.deliveryVibe);
+  const location = resolveLocation(order.deliveryCity, order.deliveryCountry);
   const canDecide =
     statusIndex(order.currentStatus) >= DELIVERED_INDEX || isPast(order.coolingOffUntil);
 
@@ -79,17 +83,48 @@ export default function OrderDetailPage() {
       )}
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <section className="card p-5" aria-label={t('orderDetail.simulatedDelivery')}>
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-base font-semibold text-ink-900">
-              {t('orderDetail.simulatedDelivery')}
+        <div className="flex flex-col gap-5">
+          <section className="card p-5" aria-label={t('orderDetail.simulatedDelivery')}>
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-base font-semibold text-ink-900">
+                {t('orderDetail.simulatedDelivery')}
+              </h2>
+              {order.demoMode && (
+                <span className="chip bg-amber-100 text-amber-800">
+                  {t('orderDetail.demoMode')}
+                </span>
+              )}
+            </div>
+            <StatusTimeline order={order} />
+          </section>
+
+          <section className="card p-5" aria-label={t('orderDetail.mapTitle')}>
+            <h2 className="mb-3 text-base font-semibold text-ink-900">
+              {t('orderDetail.mapTitle')}
             </h2>
-            {order.demoMode && (
-              <span className="chip bg-amber-100 text-amber-800">{t('orderDetail.demoMode')}</span>
+            {location.coords ? (
+              <>
+                <Suspense
+                  fallback={
+                    <div className="grid h-64 place-items-center rounded-xl bg-ink-50 text-sm text-ink-400">
+                      {t('orderDetail.mapLoading')}
+                    </div>
+                  }
+                >
+                  <DeliveryMap order={order} />
+                </Suspense>
+                {location.level === 'country' && (
+                  <p className="mt-2 text-xs text-amber-700">
+                    {t('orderDetail.mapCountryApprox')}
+                  </p>
+                )}
+                <p className="mt-2 text-xs text-ink-400">{t('orderDetail.mapSimNote')}</p>
+              </>
+            ) : (
+              <p className="text-sm text-ink-500">{t('orderDetail.mapNoLocation')}</p>
             )}
-          </div>
-          <StatusTimeline order={order} />
-        </section>
+          </section>
+        </div>
 
         <div className="flex flex-col gap-5">
           <section className="card p-5" aria-label={t('orderDetail.summary')}>
