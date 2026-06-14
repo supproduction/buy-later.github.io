@@ -222,5 +222,5 @@ pretends to sell the item directly.
 
 ## License
 
-[MIT](LICENSE) © 2026 Alexey Belan. Provided for portfolio/demo purposes; the
+[MIT](LICENSE) © 2026 Oleksii Bilan. Provided for portfolio/demo purposes; the
 "BuyLater" concept and copy are simulation-only and not a real commercial service.
