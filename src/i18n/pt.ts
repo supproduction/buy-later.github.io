@@ -173,6 +173,15 @@ export const pt: Dictionary = {
     vibeLegend: 'Onde devemos entregar virtualmente?',
     vibeHelp:
       'Escolhe uma vibe — guardamos apenas esta escolha divertida, nunca uma morada real.',
+    locationLegend: 'Local de entrega virtual',
+    locationHelp:
+      'Usamos apenas a cidade e o país para gerar uma rota de entrega simulada. Não há entrega real.',
+    country: 'País',
+    countryPlaceholder: 'Seleciona um país',
+    city: 'Cidade',
+    cityPlaceholder: 'ex.: Lisboa',
+    cityUnknown:
+      'Não temos esta cidade mapeada — vamos usar uma aproximação ao nível do país para a rota simulada.',
     demoMode: 'Modo demo',
     demoModeDesc:
       'Acelera a entrega simulada (segundos em vez de horas) e encurta o período de reflexão para 5 minutos — útil para experimentar o fluxo.',
@@ -206,6 +215,16 @@ export const pt: Dictionary = {
       'Sem pressão. Mantemos este item na tua lista em pausa e perguntamos de novo mais tarde — revisão {time}.',
     simulatedDelivery: 'Entrega simulada',
     demoMode: 'Modo demo',
+    mapTitle: 'Rota de entrega simulada',
+    mapWarehouse: 'Armazém virtual',
+    mapCity: 'Cidade de entrega virtual',
+    mapCourier: 'Estafeta virtual',
+    mapSimNote:
+      'Esta rota é simulada. Nada é enviado fisicamente e nenhuma localização real é rastreada.',
+    mapNoLocation:
+      'Sem local de entrega definido. Adiciona uma cidade na finalização para veres uma rota simulada.',
+    mapCountryApprox: 'Cidade não mapeada — a mostrar uma aproximação ao nível do país.',
+    mapLoading: 'A carregar o mapa…',
     summary: 'Resumo',
     qty: 'Qtd {n}',
     notFoundTitle: 'Pedido não encontrado',

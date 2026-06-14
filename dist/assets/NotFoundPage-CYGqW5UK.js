@@ -1,0 +1,1 @@
+import{u as e,j as o}from"./index-Cfxl2mSP.js";import{E as n}from"./EmptyState-C_iCEOP3.js";import{P as a}from"./PageHeader-CodBUhte.js";function d(){const{t}=e();return o.jsxs("div",{children:[o.jsx(a,{title:t("notFound.title")}),o.jsx(n,{emoji:"🧭",title:t("notFound.cardTitle"),description:t("notFound.desc"),action:{to:"/",label:t("notFound.back")}})]})}export{d as default};

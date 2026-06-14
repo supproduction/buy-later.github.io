@@ -11,6 +11,8 @@ import { track } from '../lib/analytics';
 interface CreateOrderArgs {
   items: CartItem[];
   deliveryVibe: DeliveryVibe;
+  deliveryCity?: string;
+  deliveryCountry?: string;
   currency: string;
   demoMode: boolean;
 }
@@ -32,11 +34,13 @@ export const useOrderStore = create<OrderState>()(
     (set, get) => ({
       orders: [],
       sequence: 0,
-      createOrder: ({ items, deliveryVibe, currency, demoMode }) => {
+      createOrder: ({ items, deliveryVibe, deliveryCity, deliveryCountry, currency, demoMode }) => {
         const nextSequence = get().sequence + 1;
         const order = createVirtualOrder({
           items,
           deliveryVibe,
+          deliveryCity,
+          deliveryCountry,
           currency,
           sequence: nextSequence,
           demoMode,

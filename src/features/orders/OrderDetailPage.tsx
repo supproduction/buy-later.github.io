@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { DELIVERY_VIBES, type OrderDecision } from '../../types/order';
+import { resolveLocation } from '../../data/locations';
 import { PageHeader } from '../../components/ui/PageHeader';
 import { EmptyState } from '../../components/ui/EmptyState';
 import { TransparencyNotice } from '../../components/ui/TransparencyNotice';

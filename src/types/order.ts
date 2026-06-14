@@ -58,6 +58,9 @@ export interface VirtualOrder {
   total: number;
   currency: string;
   deliveryVibe: DeliveryVibe;
+  /** Coarse, user-entered delivery location for the simulated route. Optional. */
+  deliveryCity?: string;
+  deliveryCountry?: string;
   currentStatus: VirtualOrderStatus;
   statusHistory: VirtualOrderStatusHistoryItem[];
   coolingOffUntil: string;

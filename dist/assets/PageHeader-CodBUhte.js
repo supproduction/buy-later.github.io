@@ -1,0 +1,1 @@
+import{j as e}from"./index-Cfxl2mSP.js";function x({title:s,subtitle:t,children:i}){return e.jsxs("div",{className:"mb-5 flex flex-wrap items-end justify-between gap-3",children:[e.jsxs("div",{children:[e.jsx("h1",{className:"text-2xl font-bold tracking-tight text-ink-900",children:s}),t&&e.jsx("p",{className:"mt-1 text-sm text-ink-500",children:t})]}),i]})}export{x as P};

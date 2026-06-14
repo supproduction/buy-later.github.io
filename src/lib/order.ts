@@ -97,6 +97,8 @@ export function reconcileStatusHistory(
 export interface CreateOrderInput {
   items: CartItem[];
   deliveryVibe: DeliveryVibe;
+  deliveryCity?: string;
+  deliveryCountry?: string;
   currency: string;
   sequence: number;
   demoMode: boolean;
@@ -119,6 +121,8 @@ export function createVirtualOrder(input: CreateOrderInput): VirtualOrder {
     total: calculateTotal(input.items),
     currency: input.currency,
     deliveryVibe: input.deliveryVibe,
+    deliveryCity: input.deliveryCity?.trim() || undefined,
+    deliveryCountry: input.deliveryCountry?.trim() || undefined,
     currentStatus: 'confirmed',
     statusHistory: [
       {

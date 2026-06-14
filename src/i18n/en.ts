@@ -176,6 +176,15 @@ export const en = {
     vibeLegend: 'Where should we virtually deliver it?',
     vibeHelp:
       'Pick a vibe — we only store this playful choice, never a real address.',
+    locationLegend: 'Virtual delivery location',
+    locationHelp:
+      'We only use city and country to generate a simulated delivery route. No real delivery happens.',
+    country: 'Country',
+    countryPlaceholder: 'Select a country',
+    city: 'City',
+    cityPlaceholder: 'e.g. Lisbon',
+    cityUnknown:
+      "We don't have this city mapped — we'll use a country-level approximation for the simulated route.",
     demoMode: 'Demo mode',
     demoModeDesc:
       'Speeds up the simulated delivery (seconds instead of hours) and shortens the cooling-off period to 5 minutes — handy for trying the flow.',
@@ -208,6 +217,15 @@ export const en = {
       "No pressure. We'll keep this item in your paused list and ask again later — review {time}.",
     simulatedDelivery: 'Simulated delivery',
     demoMode: 'Demo mode',
+    mapTitle: 'Simulated delivery route',
+    mapWarehouse: 'Virtual warehouse',
+    mapCity: 'Virtual delivery city',
+    mapCourier: 'Virtual courier',
+    mapSimNote:
+      'This route is simulated. Nothing is physically shipped and no real location is tracked.',
+    mapNoLocation: 'No delivery location set. Add a city at checkout to see a simulated route.',
+    mapCountryApprox: 'City not mapped — showing a country-level approximation.',
+    mapLoading: 'Loading map…',
     summary: 'Summary',
     qty: 'Qty {n}',
     notFoundTitle: 'Order not found',
