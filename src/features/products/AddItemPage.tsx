@@ -92,6 +92,27 @@ export default function AddItemPage() {
       </div>
 
       <form className="card flex flex-col gap-4 p-5" noValidate>
+        <div className="rounded-xl bg-brand-50 p-3">
+          <label htmlFor="productUrl" className="label">
+            🔗 {t('addItem.productUrl')}
+          </label>
+          <input
+            id="productUrl"
+            className="input"
+            type="url"
+            placeholder="https://…"
+            value={productUrl}
+            onChange={(e) => setProductUrl(e.target.value)}
+            aria-invalid={!!errors.productUrl}
+            aria-describedby={errors.productUrl ? 'producturl-error' : undefined}
+          />
+          {errors.productUrl && (
+            <p id="producturl-error" className="mt-1 text-xs text-rose-600">
+              {errors.productUrl}
+            </p>
+          )}
+        </div>
+
         <div>
           <label htmlFor="title" className="label">
             {t('addItem.name')} <span className="text-rose-500">*</span>
@@ -160,27 +181,6 @@ export default function AddItemPage() {
             value={storeName}
             onChange={(e) => setStoreName(e.target.value)}
           />
-        </div>
-
-        <div>
-          <label htmlFor="productUrl" className="label">
-            {t('addItem.productUrl')} <span className="text-ink-400">{t('common.optional')}</span>
-          </label>
-          <input
-            id="productUrl"
-            className="input"
-            type="url"
-            placeholder="https://…"
-            value={productUrl}
-            onChange={(e) => setProductUrl(e.target.value)}
-            aria-invalid={!!errors.productUrl}
-            aria-describedby={errors.productUrl ? 'producturl-error' : undefined}
-          />
-          {errors.productUrl && (
-            <p id="producturl-error" className="mt-1 text-xs text-rose-600">
-              {errors.productUrl}
-            </p>
-          )}
         </div>
 
         <div>

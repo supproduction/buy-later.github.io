@@ -4,6 +4,10 @@ import { useCartStore, selectCartCount } from '../../stores/cart.store';
 import { useTranslation } from '../../i18n';
 import { NAV_ITEMS } from './nav-items';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { Icon } from '../ui/Icon';
+
+const CART_ICON =
+  'M3 4h2l2.4 12.2a1 1 0 0 0 1 .8h8.2a1 1 0 0 0 1-.8L20 8H6M9 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm8 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z';
 
 /** Desktop top navigation bar + brand + product search. Adapts on mobile. */
 export function Header() {
@@ -71,14 +75,27 @@ export function Header() {
                 }
               >
                 {t(`nav.${item.key}`)}
-                {item.to === '/cart' && cartCount > 0 && (
-                  <span className="ml-1 rounded-full bg-brand-600 px-1.5 py-0.5 text-[10px] font-bold text-white">
-                    {cartCount}
-                  </span>
-                )}
               </NavLink>
             ))}
           </nav>
+
+          <NavLink
+            to="/cart"
+            aria-label={t('nav.cart')}
+            className={({ isActive }) =>
+              `relative grid h-9 w-9 place-items-center rounded-lg transition-colors ${
+                isActive ? 'bg-brand-50 text-brand-700' : 'text-ink-600 hover:bg-ink-100'
+              }`
+            }
+          >
+            <Icon path={CART_ICON} />
+            {cartCount > 0 && (
+              <span className="absolute -right-1 -top-1 rounded-full bg-brand-600 px-1.5 text-[10px] font-bold text-white">
+                {cartCount}
+              </span>
+            )}
+          </NavLink>
+
           <LanguageSwitcher />
         </div>
       </div>

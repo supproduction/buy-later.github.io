@@ -6,7 +6,7 @@ import { en, type Dictionary } from './en';
 import { de } from './de';
 import { pt } from './pt';
 import { formatCurrency as fmtCurrency } from '../lib/currency';
-import { formatDate as fmtDate, timeUntil as fmtTimeUntil } from '../lib/dates';
+import { formatDate as fmtDate, timeUntil as fmtTimeUntil, timeAgo as fmtTimeAgo } from '../lib/dates';
 
 export type Lang = 'en' | 'de' | 'pt';
 
@@ -76,6 +76,7 @@ export interface Translation {
   formatCurrency: (amount: number, currency?: string) => string;
   formatDate: (iso: string) => string;
   timeUntil: (iso: string) => string;
+  timeAgo: (iso: string) => string;
 }
 
 /** Primary translation hook: text + locale-aware formatters bound to the active language. */
@@ -98,6 +99,7 @@ export function useTranslation(): Translation {
   );
   const formatDate = useCallback((iso: string) => fmtDate(iso, locale), [locale]);
   const timeUntil = useCallback((iso: string) => fmtTimeUntil(iso, locale), [locale]);
+  const timeAgo = useCallback((iso: string) => fmtTimeAgo(iso, locale), [locale]);
 
-  return { t, lang, setLang, locale, formatCurrency, formatDate, timeUntil };
+  return { t, lang, setLang, locale, formatCurrency, formatDate, timeUntil, timeAgo };
 }

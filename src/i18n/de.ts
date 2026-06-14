@@ -3,7 +3,7 @@ import type { Dictionary } from './en';
 export const de: Dictionary = {
   common: {
     appName: 'BuyLater',
-    tagline: 'Simulator für virtuelle Käufe',
+    tagline: 'Halte inne, bevor du kaufst',
     simulation: 'Simulation',
     loading: 'Lädt…',
     optional: '(optional)',
@@ -15,14 +15,15 @@ export const de: Dictionary = {
     orders: 'Bestellungen',
     stats: 'Statistik',
     feed: 'Feed',
+    avoided: 'Vermieden',
   },
   lang: {
     label: 'Sprache',
   },
   footer: {
-    tagline: 'BuyLater — ein Simulator für virtuelle Käufe.',
+    tagline: 'BuyLater — ein Werkzeug für bewusstes Ausgeben.',
     disclaimer:
-      'Dies ist kein echter Shop. Es finden keine echten Käufe, Zahlungen oder Lieferungen statt. Die Sendungsverfolgung ist eine Simulation, die dir hilft, Impulskäufe hinauszuzögern.',
+      'BuyLater nimmt nie Zahlungen entgegen und verkauft nichts. Es hilft dir, vor dem Kauf innezuhalten, später zu entscheiden und das Geld zu verfolgen, das du nicht ausgegeben hast.',
     howItWorks: 'So funktioniert es',
     privacy: 'Datenschutz',
     terms: 'AGB & Haftungsausschluss',
@@ -76,12 +77,12 @@ export const de: Dictionary = {
     s1Title: 'Füge ein Produkt hinzu, das du willst',
     s1Desc:
       'Wähle aus Demo-Artikeln oder füge eigene hinzu — genau das, was du gerade kaufen möchtest.',
-    s2Title: 'Kaufe es virtuell',
+    s2Title: 'Pausiere den Kauf',
     s2Desc:
-      'Durchlaufe einen simulierten Checkout. Keine Zahlung, keine Kartendaten, keine echte Bestellung — nur der schöne Teil.',
-    s3Title: 'Verfolge die simulierte Lieferung',
+      'Lass ihn durch einen Checkout ohne Ausgaben laufen — keine Zahlung, keine Kartendaten. Du bekommst den schönen Teil des „Kaufens“ ohne die Kosten.',
+    s3Title: 'Lass den Drang abkühlen',
     s3Desc:
-      'Sieh dir eine verspielte, klar als Simulation gekennzeichnete Lieferzeitleiste an, während der Impuls abkühlt.',
+      'Gib dir eine Bedenkzeit. Optional kannst du eine verspielte Liefervorschau ansehen, um die Wartezeit zu verlängern.',
     s4Title: 'Entscheide später, ob du es noch willst',
     s4Desc:
       'Nach einer Bedenkzeit stellen wir die ehrliche Frage: Brauchst du das noch?',
@@ -98,12 +99,13 @@ export const de: Dictionary = {
     cta: 'Virtuelles Shopping starten',
   },
   catalog: {
-    title: 'Stöbern & simulieren',
-    subtitle:
-      'Wähle etwas, das dich reizt — und kaufe es virtuell, statt es wirklich zu kaufen.',
+    title: 'Wozu fühlst du dich verleitet?',
+    subtitle: 'Füge hinzu, was du fast gekauft hättest, und lass den Drang vergehen.',
     addOwn: '+ Eigenen Artikel hinzufügen',
+    urlCta: 'Hinzufügen, was du fast gekauft hast',
+    commonTemptations: 'Oder wähle eine typische Versuchung',
     transparency:
-      'Dies sind Demo-Produkte, nur zur Simulation — geladen aus einem öffentlichen Mock-Katalog (DummyJSON). Nichts hier steht zum Verkauf und keine Marke ist mit BuyLater verbunden.',
+      'BuyLater nimmt nie Zahlungen entgegen und verkauft nichts. Dies sind Beispielartikel zum Üben der Gewohnheit — nichts steht zum Verkauf.',
     fallbackTitle: 'Offline-Beispiel wird angezeigt',
     fallbackBody:
       'Wir konnten den Live-Demo-Katalog nicht erreichen, daher wird ein kleines integriertes Beispiel angezeigt. Alles funktioniert weiterhin als Simulation.',
@@ -121,8 +123,8 @@ export const de: Dictionary = {
     emptyCta: 'Eigenen Artikel hinzufügen',
   },
   product: {
-    addToCart: 'In den Warenkorb',
-    virtualBuy: 'Jetzt virtuell kaufen',
+    addToCart: 'Für später speichern',
+    virtualBuy: 'Kauf pausieren',
     yourItem: 'Dein Artikel',
     noRealMoney: 'Kein echtes Geld belastet',
     popular: 'Beliebt',
@@ -240,8 +242,9 @@ export const de: Dictionary = {
     no: 'Nein, ich brauche es nicht',
     maybe: 'Vielleicht später',
     yes: 'Ja, ich will es noch',
-    avoidedTitle: 'Du hast einen Impulskauf vermieden und {amount} gespart.',
-    avoidedSub: 'Dieser Betrag wurde deiner Gesamtersparnis hinzugefügt.',
+    celebrateTitle: 'Gute Entscheidung.',
+    avoidedTitle: 'Du hast gerade {amount} gespart.',
+    avoidedSub: 'Das sind {amount}, die auf deinem Konto bleiben.',
     stillWantedTitle: 'Notiert — du willst es noch.',
     stillWantedSub:
       'Nach einer echten Bedenkzeit ist das eine viel bewusstere Entscheidung.',
@@ -269,6 +272,10 @@ export const de: Dictionary = {
     virtuallySpent: 'Virtuell ausgegeben',
     stillWanted: 'Trotzdem gewollt',
     maybeLater: 'Pausiert / vielleicht später',
+    savedThisWeek: 'Diese Woche gespart',
+    savedThisMonth: 'Diesen Monat gespart',
+    savedThisYear: 'Dieses Jahr gespart',
+    byMonth: 'Gespart im Zeitverlauf',
     savedNotePre: '„Gespartes Geld“ zählt nur Bestellungen, bei denen du dich für ',
     savedNoteBold: '„Nein, ich brauche es nicht“',
     savedNotePost:
@@ -394,5 +401,62 @@ export const de: Dictionary = {
     yourSavedEmpty: 'Triff eine Bedenkzeit-Entscheidung, um deine Wirkung zu starten.',
     communityAvoided: 'Jemand in {city} hat {item} vermieden und {amount} gespart',
     loading: 'Feed wird geladen…',
+  },
+  dashboard: {
+    title: 'Dein bewusstes Ausgeben',
+    subtitle: 'Geld, das du nicht ausgegeben hast — und die Gewohnheiten dahinter.',
+    moneySaved: 'Gespartes Geld',
+    purchasesAvoided: 'Vermiedene Käufe',
+    underReview: 'In Prüfung',
+    stillWanted: 'Trotzdem gewollt',
+    insightsTitle: 'Erkenntnisse',
+    recentAvoidedTitle: 'Kürzlich vermieden',
+    seeAllAvoided: 'Alle vermiedenen ansehen →',
+    deliveryTitle: 'Liefervorschau (optional)',
+    deliveryBody:
+      'Magst du das ganze Ritual? Du kannst Checkout und Lieferung weiterhin durchspielen — eine optionale Art, die Pause zu verlängern. Sie ist zweitrangig gegenüber der Gewohnheit, die du aufbaust.',
+    deliveryCta: 'Bestellungen ansehen',
+    howTitle: 'So funktioniert es',
+    onboardingTitle: 'Halte inne, bevor du kaufst.',
+    onboardingBody:
+      'BuyLater hilft dir, Impulskäufe zu reduzieren. Füge etwas hinzu, das dich reizt, gib dir Zeit zu entscheiden, und verfolge das Geld, das du nicht ausgegeben hast.',
+    onboardingCta: 'Jetzt starten',
+    browse: 'Produkte ansehen',
+    addItem: 'Artikel hinzufügen',
+  },
+  streak: {
+    label: '{days}-Tage-Serie',
+    caption: 'Tage ohne Impulskauf',
+    none: 'Starte deine Serie',
+    noneCaption: 'Vermeide einen Kauf zum Start',
+    milestone: '{days} Tage ohne Impuls 🎉',
+    next: 'Noch {days} Tage bis zum nächsten Meilenstein',
+  },
+  avoided: {
+    title: 'Vermiedene Käufe',
+    subtitle: 'Jeder Kauf, bei dem du innegehalten hast — und das Geld behalten hast.',
+    cumulative: 'Insgesamt gespart',
+    count: '{count} Käufe vermieden',
+    emptyTitle: 'Noch keine vermiedenen Käufe',
+    emptyDesc:
+      'Wenn du nach der Bedenkzeit entscheidest, dass du etwas nicht brauchst, erscheint es hier mit dem gesparten Betrag.',
+    emptyCta: 'Produkte ansehen',
+    saved: '{amount} gespart',
+    avoidedAgo: 'Vermieden {time}',
+    original: 'Original {amount}',
+  },
+  insights: {
+    topCategory: 'Du vermeidest am häufigsten Käufe in {category}.',
+    categoryShare: '{pct}% deiner vermiedenen Ausgaben entfallen auf {category}.',
+    savedMoreThisMonth: 'Du hast diesen Monat mehr gespart als letzten. 📈',
+    savedLessThisMonth: 'Du hast diesen Monat weniger gespart als letzten — ein sanfter Anstoß, öfter innezuhalten.',
+    weekendPattern: 'Die meisten deiner vermiedenen Käufe passieren am Wochenende.',
+  },
+  impulse: {
+    label: 'Impuls-Score',
+    low: 'Niedrig',
+    medium: 'Mittel',
+    high: 'Hoch',
+    aria: 'Impuls-Score {score} von 100, {band}',
   },
 };

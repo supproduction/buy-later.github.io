@@ -1,11 +1,9 @@
-import { lazy, Suspense, useState } from 'react';
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { DELIVERY_VIBES, type OrderDecision } from '../../types/order';
-import { resolveLocation } from '../../data/locations';
 import { PageHeader } from '../../components/ui/PageHeader';
 import { EmptyState } from '../../components/ui/EmptyState';
 import { TransparencyNotice } from '../../components/ui/TransparencyNotice';
-import { SimulationBadge } from '../../components/ui/SimulationBadge';
 import { StatusTimeline } from '../../components/order/StatusTimeline';
 import { DecisionPanel } from '../../components/order/DecisionPanel';
 import { ProductImage } from '../../components/product/ProductImage';
@@ -14,9 +12,6 @@ import { statusIndex } from '../../lib/order';
 import { useOrderStore } from '../../stores/order.store';
 import { useOrderTicker } from '../../hooks/useOrderTicker';
 import { useTranslation } from '../../i18n';
-
-// Leaflet is heavy — only load the map chunk on this page, on demand.
-const DeliveryMap = lazy(() => import('../../components/order/DeliveryMap'));
 
 const DELIVERED_INDEX = statusIndex('virtually_delivered');
 
@@ -43,7 +38,6 @@ export default function OrderDetailPage() {
   }
 
   const vibe = DELIVERY_VIBES.find((v) => v.value === order.deliveryVibe);
-  const location = resolveLocation(order.deliveryCity, order.deliveryCountry);
   const canDecide =
     statusIndex(order.currentStatus) >= DELIVERED_INDEX || isPast(order.coolingOffUntil);
 
@@ -64,9 +58,7 @@ export default function OrderDetailPage() {
       <PageHeader
         title={order.orderNumber}
         subtitle={t('orderDetail.placed', { date: formatDate(order.createdAt) })}
-      >
-        <SimulationBadge />
-      </PageHeader>
+      />
 
       <div className="mb-5">
         <TransparencyNotice title={t('orderDetail.transTitle')}>
@@ -96,33 +88,6 @@ export default function OrderDetailPage() {
               )}
             </div>
             <StatusTimeline order={order} />
-          </section>
-
-          <section className="card p-5" aria-label={t('orderDetail.mapTitle')}>
-            <h2 className="mb-3 text-base font-semibold text-ink-900">
-              {t('orderDetail.mapTitle')}
-            </h2>
-            {location.coords ? (
-              <>
-                <Suspense
-                  fallback={
-                    <div className="grid h-64 place-items-center rounded-xl bg-ink-50 text-sm text-ink-400">
-                      {t('orderDetail.mapLoading')}
-                    </div>
-                  }
-                >
-                  <DeliveryMap order={order} />
-                </Suspense>
-                {location.level === 'country' && (
-                  <p className="mt-2 text-xs text-amber-700">
-                    {t('orderDetail.mapCountryApprox')}
-                  </p>
-                )}
-                <p className="mt-2 text-xs text-ink-400">{t('orderDetail.mapSimNote')}</p>
-              </>
-            ) : (
-              <p className="text-sm text-ink-500">{t('orderDetail.mapNoLocation')}</p>
-            )}
           </section>
         </div>
 

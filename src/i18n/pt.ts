@@ -15,14 +15,15 @@ export const pt: Dictionary = {
     orders: 'Pedidos',
     stats: 'Estatísticas',
     feed: 'Mural',
+    avoided: 'Evitados',
   },
   lang: {
     label: 'Idioma',
   },
   footer: {
-    tagline: 'BuyLater — um simulador de compras virtuais.',
+    tagline: 'BuyLater — uma ferramenta de consumo consciente.',
     disclaimer:
-      'Isto não é uma loja real. Não há compras, pagamentos ou entregas reais. O acompanhamento de entrega é uma simulação concebida para te ajudar a adiar compras por impulso.',
+      'O BuyLater nunca cobra nada e nunca vende nada. Ajuda-te a pausar antes de comprar, decidir mais tarde e acompanhar o dinheiro que escolheste não gastar.',
     howItWorks: 'Como funciona',
     privacy: 'Privacidade',
     terms: 'Termos & Aviso legal',
@@ -76,12 +77,12 @@ export const pt: Dictionary = {
     s1Title: 'Adiciona um produto que queres',
     s1Desc:
       'Escolhe entre itens de demonstração ou adiciona os teus — exatamente aquilo que tens vontade de comprar agora.',
-    s2Title: 'Compra-o virtualmente',
+    s2Title: 'Pausa a compra',
     s2Desc:
-      'Faz uma finalização simulada. Sem pagamento, sem dados de cartão, sem pedido real — só a parte satisfatória.',
-    s3Title: 'Acompanha a entrega simulada',
+      'Passa-a por uma finalização sem gastos — sem pagamento, sem dados de cartão. Tens a parte satisfatória de "comprar" sem o custo.',
+    s3Title: 'Deixa a vontade arrefecer',
     s3Desc:
-      'Vê uma linha do tempo de entrega divertida e claramente simulada enquanto o impulso arrefece.',
+      'Dá-te um período de reflexão. Opcionalmente, vê uma pré-visualização de entrega divertida para prolongar a espera.',
     s4Title: 'Decide depois se ainda o queres',
     s4Desc:
       'Após um período de reflexão, fazemos a pergunta honesta: ainda precisas disto?',
@@ -98,12 +99,13 @@ export const pt: Dictionary = {
     cta: 'Começar compras virtuais',
   },
   catalog: {
-    title: 'Explorar & simular',
-    subtitle:
-      'Escolhe algo que te tenta — e compra-o virtualmente em vez de o comprares a sério.',
+    title: 'O que te está a tentar?',
+    subtitle: 'Adiciona aquilo que quase compraste e dá tempo para a vontade passar.',
     addOwn: '+ Adicionar o teu item',
+    urlCta: 'Adicionar o que quase compraste',
+    commonTemptations: 'Ou escolhe uma tentação comum',
     transparency:
-      'Estes são produtos de demonstração, apenas para simulação — carregados de um catálogo público fictício (DummyJSON). Nada aqui está à venda e nenhuma marca está associada ao BuyLater.',
+      'O BuyLater nunca cobra nada e nunca vende nada. Estes são itens de exemplo para praticares o hábito — nada aqui está à venda.',
     fallbackTitle: 'A mostrar uma amostra offline',
     fallbackBody:
       'Não conseguimos chegar ao catálogo de demonstração ao vivo, por isso é mostrada uma pequena amostra integrada. Tudo continua a funcionar como simulação.',
@@ -121,8 +123,8 @@ export const pt: Dictionary = {
     emptyCta: 'Adicionar o teu item',
   },
   product: {
-    addToCart: 'Adicionar ao carrinho',
-    virtualBuy: 'Comprar virtualmente',
+    addToCart: 'Guardar para depois',
+    virtualBuy: 'Pausar esta compra',
     yourItem: 'O teu item',
     noRealMoney: 'Nenhum dinheiro real cobrado',
     popular: 'Popular',
@@ -240,8 +242,9 @@ export const pt: Dictionary = {
     no: 'Não, não preciso disto',
     maybe: 'Talvez depois',
     yes: 'Sim, ainda quero',
-    avoidedTitle: 'Evitaste uma compra por impulso e poupaste {amount}.',
-    avoidedSub: 'Esse valor foi adicionado ao teu total poupado.',
+    celebrateTitle: 'Ótima decisão.',
+    avoidedTitle: 'Acabaste de poupar {amount}.',
+    avoidedSub: 'São {amount} que ficam na tua conta.',
     stillWantedTitle: 'Registado — ainda o queres.',
     stillWantedSub:
       'Após um verdadeiro período de reflexão, essa é uma decisão muito mais ponderada.',
@@ -269,6 +272,10 @@ export const pt: Dictionary = {
     virtuallySpent: 'Gasto virtualmente',
     stillWanted: 'Ainda quero',
     maybeLater: 'Em pausa / talvez depois',
+    savedThisWeek: 'Poupado esta semana',
+    savedThisMonth: 'Poupado este mês',
+    savedThisYear: 'Poupado este ano',
+    byMonth: 'Poupado ao longo do tempo',
     savedNotePre: '“Dinheiro poupado” conta apenas pedidos em que escolheste ',
     savedNoteBold: '“Não, não preciso disto”',
     savedNotePost:
@@ -394,5 +401,63 @@ export const pt: Dictionary = {
     yourSavedEmpty: 'Toma uma decisão de reflexão para começar o teu impacto.',
     communityAvoided: 'Alguém em {city} evitou {item} e poupou {amount}',
     loading: 'A carregar o mural…',
+  },
+  dashboard: {
+    title: 'O teu consumo consciente',
+    subtitle: 'Dinheiro que escolheste não gastar — e os hábitos por trás disso.',
+    moneySaved: 'Dinheiro poupado',
+    purchasesAvoided: 'Compras evitadas',
+    underReview: 'Em análise',
+    stillWanted: 'Ainda quero',
+    insightsTitle: 'Insights',
+    recentAvoidedTitle: 'Evitados recentemente',
+    seeAllAvoided: 'Ver todos os evitados →',
+    deliveryTitle: 'Pré-visualização de entrega (opcional)',
+    deliveryBodyDummy: '',
+    deliveryBody:
+      'Preferes o ritual completo? Ainda podes simular a finalização e a entrega — uma forma opcional de prolongar a pausa. É secundário face ao hábito que estás a criar.',
+    deliveryCta: 'Ver pedidos',
+    howTitle: 'Como funciona',
+    onboardingTitle: 'Pausa antes de comprar.',
+    onboardingBody:
+      'O BuyLater ajuda-te a reduzir o consumo por impulso. Adiciona algo que te tenta, dá-te tempo para decidir e acompanha o dinheiro que escolheste não gastar.',
+    onboardingCta: 'Começar agora',
+    browse: 'Ver produtos',
+    addItem: 'Adicionar item',
+  },
+  streak: {
+    label: 'Sequência de {days} dias',
+    caption: 'dias sem uma compra por impulso',
+    none: 'Começa a tua sequência',
+    noneCaption: 'Evita uma compra para começar',
+    milestone: '{days} dias sem impulsos 🎉',
+    next: 'Faltam {days} dias para o próximo marco',
+  },
+  avoided: {
+    title: 'Compras evitadas',
+    subtitle: 'Cada compra em que pausaste — e que ficou no teu bolso.',
+    cumulative: 'Total poupado',
+    count: '{count} compras evitadas',
+    emptyTitle: 'Ainda sem compras evitadas',
+    emptyDesc:
+      'Quando decidires que não precisas de um item após a reflexão, ele aparece aqui com o valor que poupaste.',
+    emptyCta: 'Ver produtos',
+    saved: 'Poupado {amount}',
+    avoidedAgo: 'Evitado {time}',
+    original: 'Original {amount}',
+  },
+  insights: {
+    topCategory: 'Evitas mais frequentemente compras em {category}.',
+    categoryShare: '{pct}% dos teus gastos evitados vêm de {category}.',
+    savedMoreThisMonth: 'Poupaste mais este mês do que no mês passado. 📈',
+    savedLessThisMonth: 'Poupaste menos este mês do que no anterior — um lembrete gentil para pausar mais.',
+    weekendPattern: 'A maioria das tuas compras evitadas acontece ao fim de semana.',
+  },
+  impulse: {
+    label: 'Pontuação de impulso',
+    low: 'Baixa',
+    medium: 'Média',
+    high: 'Alta',
+    aria: 'Pontuação de impulso {score} de 100, {band}',
   },
 };

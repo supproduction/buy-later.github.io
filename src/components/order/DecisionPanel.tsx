@@ -17,15 +17,20 @@ export function DecisionPanel({ order, canDecide, onDecide }: DecisionPanelProps
   if (order.decision === 'avoided') {
     return (
       <div className="card border-2 border-brand-200 bg-brand-50 p-5 text-center">
-        <p className="text-3xl" aria-hidden="true">
+        <p className="text-4xl" aria-hidden="true">
           🎉
         </p>
-        <h3 className="mt-2 text-lg font-bold text-brand-800">
+        <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-brand-600">
+          {t('decision.celebrateTitle')}
+        </p>
+        <h3 className="mt-1 text-2xl font-extrabold text-brand-800">
           {t('decision.avoidedTitle', {
             amount: formatCurrency(order.total, order.currency),
           })}
         </h3>
-        <p className="mt-1 text-sm text-brand-700">{t('decision.avoidedSub')}</p>
+        <p className="mt-1 text-sm text-brand-700">
+          {t('decision.avoidedSub', { amount: formatCurrency(order.total, order.currency) })}
+        </p>
       </div>
     );
   }

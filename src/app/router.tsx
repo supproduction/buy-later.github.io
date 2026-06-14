@@ -4,12 +4,12 @@ import { AppLayout } from '../components/layout/AppLayout';
 import { ScrollToTop } from '../components/layout/ScrollToTop';
 
 // Lazy-load routes so the initial bundle stays light.
-const LandingPage = lazy(() => import('../features/landing/LandingPage'));
+const DashboardPage = lazy(() => import('../features/dashboard/DashboardPage'));
 const HowItWorksPage = lazy(() => import('../features/landing/HowItWorksPage'));
 const CatalogPage = lazy(() => import('../features/products/CatalogPage'));
 const AddItemPage = lazy(() => import('../features/products/AddItemPage'));
 const ProductDetailPage = lazy(() => import('../features/products/ProductDetailPage'));
-const FeedPage = lazy(() => import('../features/feed/FeedPage'));
+const AvoidedPurchasesPage = lazy(() => import('../features/avoided/AvoidedPurchasesPage'));
 const CartPage = lazy(() => import('../features/cart/CartPage'));
 const CheckoutPage = lazy(() => import('../features/cart/CheckoutPage'));
 const OrdersPage = lazy(() => import('../features/orders/OrdersPage'));
@@ -29,12 +29,12 @@ export const router = createBrowserRouter([
       </>
     ),
     children: [
-      { index: true, element: <LandingPage /> },
+      { index: true, element: <DashboardPage /> },
       { path: 'how-it-works', element: <HowItWorksPage /> },
       { path: 'products', element: <CatalogPage /> },
       { path: 'products/new', element: <AddItemPage /> },
       { path: 'products/:productId', element: <ProductDetailPage /> },
-      { path: 'feed', element: <FeedPage /> },
+      { path: 'avoided-purchases', element: <AvoidedPurchasesPage /> },
       { path: 'cart', element: <CartPage /> },
       { path: 'checkout', element: <CheckoutPage /> },
       { path: 'orders', element: <OrdersPage /> },

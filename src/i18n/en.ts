@@ -7,7 +7,7 @@
 export const en = {
   common: {
     appName: 'BuyLater',
-    tagline: 'Virtual purchase simulator',
+    tagline: 'Pause before you buy',
     simulation: 'Simulation',
     loading: 'Loading…',
     optional: '(optional)',
@@ -17,16 +17,17 @@ export const en = {
     products: 'Products',
     cart: 'Cart',
     orders: 'Orders',
-    stats: 'Stats',
+    stats: 'Statistics',
     feed: 'Feed',
+    avoided: 'Avoided',
   },
   lang: {
     label: 'Language',
   },
   footer: {
-    tagline: 'BuyLater — a virtual purchase simulator.',
+    tagline: 'BuyLater — a mindful-spending tool.',
     disclaimer:
-      'This is not a real shop. No real purchases, payments, or deliveries happen. Delivery tracking is a simulation designed to help you delay impulse buying.',
+      'BuyLater never takes payment and never sells anything. It helps you pause before you buy, decide later, and track the money you chose not to spend.',
     howItWorks: 'How it works',
     privacy: 'Privacy',
     terms: 'Terms & Disclaimer',
@@ -68,9 +69,9 @@ export const en = {
     whyP1: "A lot of buying isn't really about the product — it's about a feeling. Stress, boredom, a flash of excitement, a clever “limited time” banner. The urge spikes, and a few taps later the money's gone.",
     whyP2: "The fix isn't guilt. It's a little bit of time. Giving an urge a cooling-off period — even a few minutes or a few days — lets the feeling fade so you can ask calmly whether you actually want the thing.",
     whyP3: 'BuyLater gives you the satisfying ritual of “buying” — the checkout, the order confirmation, the delivery tracking — without the cost. Then it nudges you to decide later, with a clear head, and shows you what you kept in your pocket.',
-    transTitle: 'This is not a real shop',
+    transTitle: 'No payments. Ever.',
     transPre:
-      'No real purchases, payments, or deliveries happen. BuyLater is a virtual purchase simulator and an impulse-purchase cooling-off tool. See our ',
+      'BuyLater never charges you and never sells anything. It is a tool to help you pause, decide later, and keep the money you would have spent. See our ',
     transTerms: 'Terms & Disclaimer',
     transAnd: ' and ',
     transPrivacy: 'Privacy',
@@ -80,12 +81,12 @@ export const en = {
     s1Title: 'Add a product you want',
     s1Desc:
       'Pick from demo items or add your own — the exact thing you feel the urge to buy right now.',
-    s2Title: 'Virtually buy it',
+    s2Title: 'Pause the purchase',
     s2Desc:
-      'Run a simulated checkout. No payment, no card details, no real order — just the satisfying part.',
-    s3Title: 'Track simulated delivery',
+      'Run it through a no-spend checkout — no payment, no card details. You get the satisfying part of "buying" without the cost.',
+    s3Title: 'Let the urge cool down',
     s3Desc:
-      'Watch a playful, clearly-simulated delivery timeline while the impulse cools down.',
+      'Give yourself a cooling-off window. Optionally watch a playful delivery preview to stretch the wait.',
     s4Title: 'Decide later if you still want it',
     s4Desc:
       'After a cooling-off period, we ask the honest question: do you still need this?',
@@ -102,12 +103,13 @@ export const en = {
     cta: 'Start virtual shopping',
   },
   catalog: {
-    title: 'Browse & simulate',
-    subtitle:
-      "Pick something you're tempted by — then virtually buy it instead of really buying it.",
+    title: 'What are you tempted by?',
+    subtitle: 'Add the thing you almost bought, then give the urge time to pass.',
     addOwn: '+ Add your own item',
+    urlCta: 'Add what you almost bought',
+    commonTemptations: 'Or pick a common temptation',
     transparency:
-      'These are demo products for simulation only — loaded from a public mock catalog (DummyJSON). Nothing here is for sale and no brand is affiliated with BuyLater.',
+      'BuyLater never charges you and never sells anything. These are sample items to try the habit with — nothing here is for sale.',
     fallbackTitle: 'Showing an offline sample',
     fallbackBody:
       "We couldn't reach the live demo catalog, so a small built-in sample is shown instead. Everything still works as a simulation.",
@@ -125,8 +127,8 @@ export const en = {
     emptyCta: 'Add your own item',
   },
   product: {
-    addToCart: 'Add to cart',
-    virtualBuy: 'Virtual buy now',
+    addToCart: 'Save for later',
+    virtualBuy: 'Pause this purchase',
     yourItem: 'Your item',
     noRealMoney: 'No real money charged',
     popular: 'Popular',
@@ -135,11 +137,11 @@ export const en = {
     refPriceTitle: 'Reference retail price — informational only, not a discount',
   },
   addItem: {
-    title: 'Add your own item',
-    subtitle:
-      "Enter the thing you're tempted to buy. We'll simulate the purchase so you can cool off.",
-    manualTitle: 'Manual entry only',
-    manualBody: 'We do not fetch or scrape shops yet. Add the product manually for now.',
+    title: 'Add what you almost bought',
+    subtitle: 'Paste the link to the thing you’re tempted by, give it a price, and let it cool off.',
+    manualTitle: 'Paste a link, then add the details',
+    manualBody:
+      "We don't fetch shops automatically, so drop the product link below and fill in the name and price. The link is saved so you can revisit it later if you still want it.",
     name: 'Product name',
     priceEur: 'Price (EUR)',
     category: 'Category',
@@ -161,10 +163,10 @@ export const en = {
       "Add something you're tempted by and run it through a virtual purchase.",
     emptyCta: 'Start virtual shopping',
     total: 'Total',
-    transTitle: 'This is a virtual order',
+    transTitle: 'No payment — this is a pause',
     transBody:
-      'No payment will be taken. No real product will be shipped. This step simulates a checkout to help you pause and reconsider.',
-    checkout: 'Virtual checkout',
+      "Nothing is charged and nothing ships. You're setting these items aside to decide later with a clear head.",
+    checkout: 'Start cooling-off',
     keepBrowsing: 'Keep browsing',
     remove: 'Remove',
     decrease: 'Decrease quantity of {name}',
@@ -172,8 +174,8 @@ export const en = {
     quantity: 'Quantity: {n}',
   },
   checkout: {
-    title: 'Virtual checkout',
-    subtitle: 'No real payment, address, or card details — ever.',
+    title: 'Start your cooling-off',
+    subtitle: 'No payment, address, or card details — ever.',
     vibeLegend: 'Where should we virtually deliver it?',
     vibeHelp:
       'Pick a vibe — we only store this playful choice, never a real address.',
@@ -190,10 +192,10 @@ export const en = {
     demoModeDesc:
       'Speeds up the simulated delivery (seconds instead of hours) and shortens the cooling-off period to 5 minutes — handy for trying the flow.',
     orderTotal: 'Order total (virtual)',
-    transTitle: 'This is a virtual order',
+    transTitle: 'No payment — this is a pause',
     transBody:
-      "No payment will be taken. No real product will be shipped. We're simulating the checkout and delivery to help you delay an impulse purchase.",
-    confirm: 'Confirm virtual order',
+      "Nothing is charged and nothing ships. We'll hold these items through a cooling-off period so you can decide later, calmly.",
+    confirm: 'Start cooling-off',
   },
   orders: {
     title: 'Virtual orders',
@@ -211,9 +213,9 @@ export const en = {
   orderDetail: {
     allOrders: '← All orders',
     placed: 'Placed {date}',
-    transTitle: 'Delivery tracking is simulated',
+    transTitle: 'The point is the pause',
     transBody:
-      'Delivery tracking is simulated to help you delay impulse buying. Nothing is physically shipped, and no payment was taken.',
+      'This optional delivery preview is just a way to stretch the wait. What matters is the decision at the end — nothing is charged and nothing ships.',
     maybeLaterMsg:
       "No pressure. We'll keep this item in your paused list and ask again later — review {time}.",
     simulatedDelivery: 'Simulated delivery',
@@ -240,8 +242,9 @@ export const en = {
     no: 'No, I do not need it',
     maybe: 'Maybe later',
     yes: 'Yes, I still want it',
-    avoidedTitle: 'You avoided an impulse purchase and saved {amount}.',
-    avoidedSub: 'That amount has been added to your total saved.',
+    celebrateTitle: 'Great decision.',
+    avoidedTitle: 'You just saved {amount}.',
+    avoidedSub: "That's {amount} staying in your bank account.",
     stillWantedTitle: 'Noted — you still want this.',
     stillWantedSub:
       "After a real cooling-off period, that's a much more deliberate decision.",
@@ -269,6 +272,10 @@ export const en = {
     virtuallySpent: 'Virtually spent',
     stillWanted: 'Still wanted',
     maybeLater: 'Paused / maybe later',
+    savedThisWeek: 'Saved this week',
+    savedThisMonth: 'Saved this month',
+    savedThisYear: 'Saved this year',
+    byMonth: 'Saved over time',
     savedNotePre: '“Money saved” counts only orders where you decided ',
     savedNoteBold: '“No, I do not need it”',
     savedNotePost: '. It reflects virtual prices, not real transactions.',
@@ -393,6 +400,63 @@ export const en = {
     yourSavedEmpty: 'Make a cooling-off decision to start your impact.',
     communityAvoided: 'Someone in {city} avoided {item} and saved {amount}',
     loading: 'Loading feed…',
+  },
+  dashboard: {
+    title: 'Your mindful spending',
+    subtitle: 'Money you chose not to spend — and the habits behind it.',
+    moneySaved: 'Money saved',
+    purchasesAvoided: 'Purchases avoided',
+    underReview: 'Items under review',
+    stillWanted: 'Still wanted',
+    insightsTitle: 'Insights',
+    recentAvoidedTitle: 'Recently avoided',
+    seeAllAvoided: 'See all avoided →',
+    deliveryTitle: 'Delivery preview (optional)',
+    deliveryBody:
+      'Prefer the full ritual? You can still simulate checkout and delivery — an optional way to stretch the pause. It is secondary to the habit you are building.',
+    deliveryCta: 'View orders',
+    howTitle: 'How it works',
+    onboardingTitle: 'Pause before you buy.',
+    onboardingBody:
+      'BuyLater helps you reduce impulse spending. Add something you’re tempted by, give yourself time to decide, and track the money you chose not to spend.',
+    onboardingCta: 'Start now',
+    browse: 'Browse products',
+    addItem: 'Add an item',
+  },
+  streak: {
+    label: '{days}-day streak',
+    caption: 'days without an impulse purchase',
+    none: 'Start your streak',
+    noneCaption: 'Avoid a purchase to begin',
+    milestone: '{days} days impulse-free 🎉',
+    next: '{days} days to your next milestone',
+  },
+  avoided: {
+    title: 'Avoided purchases',
+    subtitle: 'Every purchase you paused on — and kept in your pocket.',
+    cumulative: 'Total saved',
+    count: '{count} purchases avoided',
+    emptyTitle: 'No avoided purchases yet',
+    emptyDesc:
+      'When you decide you don’t need an item after cooling off, it’ll appear here with the amount you saved.',
+    emptyCta: 'Browse products',
+    saved: 'Saved {amount}',
+    avoidedAgo: 'Avoided {time}',
+    original: 'Original {amount}',
+  },
+  insights: {
+    topCategory: 'You most often avoid {category} purchases.',
+    categoryShare: '{pct}% of your avoided spending comes from {category}.',
+    savedMoreThisMonth: 'You saved more this month than last month. 📈',
+    savedLessThisMonth: 'You saved less this month than last — a gentle nudge to pause more.',
+    weekendPattern: 'Most of your avoided purchases happen on weekends.',
+  },
+  impulse: {
+    label: 'Impulse score',
+    low: 'Low',
+    medium: 'Medium',
+    high: 'High',
+    aria: 'Impulse score {score} of 100, {band}',
   },
 };
 

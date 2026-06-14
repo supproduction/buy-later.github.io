@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import type { Product } from '../../types/product';
 import { useTranslation } from '../../i18n';
-import { flagFor, reconsiderCountFor, sellerCityFor } from '../../lib/community';
 import { ProductImage } from './ProductImage';
 import { StarRating } from './StarRating';
 import { WatchButton } from './WatchButton';
+import { ImpulseBadge } from './ImpulseBadge';
 
 interface ProductCardProps {
   product: Product;
@@ -16,8 +16,6 @@ export function ProductCard({ product, onAddToCart, onVirtualBuy }: ProductCardP
   const { t, formatCurrency } = useTranslation();
   const hasRef = product.originalPrice != null && product.originalPrice > product.price;
   const isPopular = (product.rating ?? 0) >= 4.5;
-  const seller = sellerCityFor(product.id);
-  const reconsidering = reconsiderCountFor(product.id);
   const detailHref = `/products/${encodeURIComponent(product.id)}`;
 
   return (
@@ -46,11 +44,9 @@ export function ProductCard({ product, onAddToCart, onVirtualBuy }: ProductCardP
           </Link>
         </h3>
 
-        {/* Ships-from (simulated seller city) + cooling-off signal */}
-        <p className="mt-0.5 flex items-center gap-1 truncate text-xs text-ink-400">
-          <span aria-hidden="true">{flagFor(seller.country)}</span>
-          {t('productDetail.shipsFrom')} {seller.city}
-        </p>
+        {product.storeName && (
+          <p className="mt-0.5 truncate text-xs text-ink-400">{product.storeName}</p>
+        )}
 
         {product.rating != null && <StarRating rating={product.rating} className="mt-1.5" />}
 
@@ -71,9 +67,7 @@ export function ProductCard({ product, onAddToCart, onVirtualBuy }: ProductCardP
         </div>
 
         <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
-          <span className="chip bg-brand-50 text-brand-700" title={t('community.sampleLabel')}>
-            🧊 {t('community.coolingChip', { count: reconsidering })}
-          </span>
+          <ImpulseBadge product={product} />
           <span className="flex items-center gap-1 text-[11px] font-medium text-brand-700">
             <span aria-hidden="true">🔒</span>
             {t('product.noRealMoney')}

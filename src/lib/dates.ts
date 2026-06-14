@@ -24,6 +24,19 @@ export function formatDate(iso: string, locale?: string): string {
   }
 }
 
+/** Locale-aware "time ago", e.g. "12 days ago" / "vor 12 Tagen". */
+export function timeAgo(iso: string, locale?: string): string {
+  const diff = Date.now() - new Date(iso).getTime();
+  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
+  const days = Math.floor(diff / DAY_MS);
+  if (days >= 1) return rtf.format(-days, 'day');
+  const hours = Math.floor(diff / (60 * 60 * 1000));
+  if (hours >= 1) return rtf.format(-hours, 'hour');
+  const minutes = Math.floor(diff / (60 * 1000));
+  if (minutes >= 1) return rtf.format(-minutes, 'minute');
+  return rtf.format(0, 'minute');
+}
+
 /**
  * Human-friendly, locale-aware countdown, e.g. "in 6 days" / "in 6 Tagen".
  * Uses Intl.RelativeTimeFormat so it localizes automatically.

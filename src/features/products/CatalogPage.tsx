@@ -48,15 +48,31 @@ export default function CatalogPage() {
 
   return (
     <div>
-      <PageHeader title={t('catalog.title')} subtitle={t('catalog.subtitle')}>
-        <Link to="/products/new" className="btn-primary">
-          {t('catalog.addOwn')}
-        </Link>
-      </PageHeader>
+      <PageHeader title={t('catalog.title')} subtitle={t('catalog.subtitle')} />
+
+      {/* Primary input: the real job is "I'm tempted by this specific thing". */}
+      <Link
+        to="/products/new"
+        className="card mb-4 flex items-center justify-between gap-3 bg-brand-600 p-5 text-white ring-brand-600 transition-colors hover:bg-brand-700"
+      >
+        <span className="flex items-center gap-3">
+          <span aria-hidden="true" className="text-2xl">
+            🔗
+          </span>
+          <span className="font-semibold">{t('catalog.urlCta')}</span>
+        </span>
+        <span aria-hidden="true" className="text-xl">
+          →
+        </span>
+      </Link>
 
       <div className="mb-4">
         <TransparencyNotice>{t('catalog.transparency')}</TransparencyNotice>
       </div>
+
+      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink-400">
+        {t('catalog.commonTemptations')}
+      </h2>
 
       {usingFallback && (
         <div className="mb-4">

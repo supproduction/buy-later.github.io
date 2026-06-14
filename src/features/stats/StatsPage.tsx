@@ -3,6 +3,7 @@ import { EmptyState } from '../../components/ui/EmptyState';
 import { TransparencyNotice } from '../../components/ui/TransparencyNotice';
 import { DELIVERY_VIBES, type OrderDecision } from '../../types/order';
 import { useOrderStore, selectStats } from '../../stores/order.store';
+import { savingsByMonth, savingsInPeriods } from '../../lib/insights';
 import { useTranslation } from '../../i18n';
 
 const DECISION_KEY: Record<OrderDecision, string> = {
@@ -43,6 +44,13 @@ export default function StatsPage() {
 
   const maxCategory = stats.topCategoriesByAvoidedSpend[0]?.amount ?? 0;
   const recent = orders.slice(0, 6);
+  const periods = savingsInPeriods(orders);
+  const months = savingsByMonth(orders, 6);
+  const maxMonth = Math.max(1, ...months.map((m) => m.amount));
+  const monthLabel = (key: string) => {
+    const [y, m] = key.split('-').map(Number);
+    return new Date(y, m - 1, 1).toLocaleDateString(undefined, { month: 'short' });
+  };
 
   return (
     <div>
@@ -71,6 +79,39 @@ export default function StatsPage() {
           {t('stats.savedNotePost')}
         </TransparencyNotice>
       </div>
+
+      <section className="mt-5 grid grid-cols-3 gap-3">
+        <StatTile
+          label={t('stats.savedThisWeek')}
+          value={formatCurrency(periods.week, stats.currency)}
+        />
+        <StatTile
+          label={t('stats.savedThisMonth')}
+          value={formatCurrency(periods.month, stats.currency)}
+        />
+        <StatTile
+          label={t('stats.savedThisYear')}
+          value={formatCurrency(periods.year, stats.currency)}
+        />
+      </section>
+
+      <section className="card mt-5 p-5" aria-label={t('stats.byMonth')}>
+        <h2 className="text-base font-semibold text-ink-900">{t('stats.byMonth')}</h2>
+        <div className="mt-4 flex h-40 items-end gap-2">
+          {months.map((m) => (
+            <div key={m.key} className="flex flex-1 flex-col items-center gap-1">
+              <div className="flex w-full flex-1 items-end">
+                <div
+                  className="w-full rounded-t-md bg-brand-500"
+                  style={{ height: `${m.amount > 0 ? Math.max(4, (m.amount / maxMonth) * 100) : 0}%` }}
+                  title={formatCurrency(m.amount, stats.currency)}
+                />
+              </div>
+              <span className="text-[10px] font-medium text-ink-400">{monthLabel(m.key)}</span>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section className="card mt-5 p-5" aria-label={t('stats.topCategories')}>
         <h2 className="text-base font-semibold text-ink-900">{t('stats.topCategories')}</h2>

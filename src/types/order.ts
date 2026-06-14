@@ -65,6 +65,8 @@ export interface VirtualOrder {
   statusHistory: VirtualOrderStatusHistoryItem[];
   coolingOffUntil: string;
   decision?: OrderDecision;
+  /** When the final decision (avoided / still_wanted) was recorded. */
+  decidedAt?: string;
   /** Whether the simulated delivery runs in fast "demo mode". */
   demoMode: boolean;
 }

@@ -79,9 +79,10 @@ export const useOrderStore = create<OrderState>()(
                   DEFAULT_COOLING_OFF_DAYS,
                 ),
                 decision: undefined,
+                decidedAt: undefined,
               };
             }
-            return { ...order, decision };
+            return { ...order, decision, decidedAt: new Date().toISOString() };
           }),
         }));
 
