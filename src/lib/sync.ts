@@ -16,6 +16,7 @@ import {
   type UserReflection,
   type WatchedItem,
 } from '../stores/community.store';
+import { useSyncStatus } from '../stores/sync-status.store';
 
 // Guard so the programmatic setState during reconcile doesn't echo back as a push.
 let applyingRemote = false;
@@ -160,6 +161,7 @@ async function pushAll(userId: string): Promise<void> {
     })),
   );
 
+  useSyncStatus.getState().setStatus('syncing');
   try {
     await Promise.all([
       replaceTable('products', userId, products.map((p) => productToRow(p, userId))),
@@ -176,7 +178,9 @@ async function pushAll(userId: string): Promise<void> {
       ),
       replaceTable('reflections', userId, reflectionRows),
     ]);
+    useSyncStatus.getState().setStatus('synced');
   } catch (err) {
+    useSyncStatus.getState().setStatus('error');
     if (import.meta.env.DEV) console.warn('[sync] push failed', err);
   }
 }
@@ -206,6 +210,7 @@ function nextSequenceFrom(orders: VirtualOrder[]): number {
  */
 export async function reconcile(userId: string): Promise<void> {
   if (!supabase) return;
+  useSyncStatus.getState().setStatus('syncing');
   try {
     const cloud = await pullAll(userId);
     applyingRemote = true;
@@ -213,8 +218,10 @@ export async function reconcile(userId: string): Promise<void> {
     useOrderStore.setState({ orders: cloud.orders, sequence: nextSequenceFrom(cloud.orders) });
     useCommunityStore.setState({ watch: cloud.watch, reflections: cloud.reflections });
     applyingRemote = false;
+    useSyncStatus.getState().setStatus('synced');
   } catch (err) {
     applyingRemote = false;
+    useSyncStatus.getState().setStatus('error');
     if (import.meta.env.DEV) console.warn('[sync] reconcile failed', err);
   }
 }

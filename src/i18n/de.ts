@@ -20,6 +20,12 @@ export const de: Dictionary = {
   lang: {
     label: 'Sprache',
   },
+  sync: {
+    local: 'Nur lokal',
+    syncing: 'Synchronisiert…',
+    synced: 'Synchron',
+    error: 'Sync-Problem',
+  },
   footer: {
     tagline: 'BuyLater — ein Werkzeug für bewusstes Ausgeben.',
     disclaimer:

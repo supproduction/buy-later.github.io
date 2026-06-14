@@ -24,6 +24,12 @@ export const en = {
   lang: {
     label: 'Language',
   },
+  sync: {
+    local: 'Local only',
+    syncing: 'Syncing…',
+    synced: 'Synced',
+    error: 'Sync issue',
+  },
   footer: {
     tagline: 'BuyLater — a mindful-spending tool.',
     disclaimer:

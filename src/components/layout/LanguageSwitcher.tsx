@@ -1,14 +1,14 @@
 import { LANGUAGES, useTranslation, type Lang } from '../../i18n';
 import { Select } from '../ui/Select';
 
-/** Compact language selector shown in the header (visible on all sizes). */
-export function LanguageSwitcher({ className = 'w-36' }: { className?: string }) {
+/** Compact icon-only language selector for the header. */
+export function LanguageSwitcher({ className = '' }: { className?: string }) {
   const { lang, setLang, t } = useTranslation();
 
   return (
     <Select
       className={className}
-      size="sm"
+      iconOnly
       leadingIcon="🌐"
       ariaLabel={t('lang.label')}
       value={lang}

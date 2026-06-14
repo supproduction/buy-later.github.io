@@ -19,6 +19,8 @@ interface SelectProps {
   size?: 'md' | 'sm';
   /** Show a leading icon on the trigger (e.g. 🌐 for language). */
   leadingIcon?: string;
+  /** Render only the icon as the trigger (compact); listbox still shows labels. */
+  iconOnly?: boolean;
 }
 
 /**
@@ -36,6 +38,7 @@ export function Select({
   className = '',
   size = 'md',
   leadingIcon,
+  iconOnly = false,
 }: SelectProps) {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(() =>
@@ -132,32 +135,49 @@ export function Select({
   const pad = size === 'sm' ? 'py-1.5 pl-2.5 pr-9' : 'py-2.5 pl-3.5 pr-9';
 
   return (
-    <div ref={rootRef} className={`relative ${className}`}>
-      <button
-        type="button"
-        id={id}
-        className={`flex w-full items-center justify-between gap-2 rounded-xl border border-ink-200 bg-white ${pad} text-left text-sm font-medium text-ink-800 transition-colors hover:border-ink-300 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200`}
-        aria-haspopup="listbox"
-        aria-expanded={open}
-        aria-label={ariaLabel}
-        onClick={() => (open ? setOpen(false) : openMenu())}
-        onKeyDown={onKeyDown}
-      >
-        <span className="flex min-w-0 items-center gap-1.5">
-          {(leadingIcon || selected?.icon) && (
-            <span aria-hidden="true">{leadingIcon ?? selected?.icon}</span>
-          )}
-          <span className="truncate">{selected?.label}</span>
-        </span>
-        <span
-          aria-hidden="true"
-          className={`pointer-events-none absolute right-3 text-ink-400 transition-transform ${
-            open ? 'rotate-180' : ''
-          }`}
+    <div ref={rootRef} className={`relative ${iconOnly ? 'inline-block' : ''} ${className}`}>
+      {iconOnly ? (
+        <button
+          type="button"
+          id={id}
+          className="grid h-9 w-9 place-items-center rounded-lg text-ink-600 transition-colors hover:bg-ink-100 focus:outline-none focus:ring-2 focus:ring-brand-200"
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-label={ariaLabel}
+          onClick={() => (open ? setOpen(false) : openMenu())}
+          onKeyDown={onKeyDown}
         >
-          ▾
-        </span>
-      </button>
+          <span aria-hidden="true" className="text-lg">
+            {leadingIcon ?? selected?.icon ?? '▾'}
+          </span>
+        </button>
+      ) : (
+        <button
+          type="button"
+          id={id}
+          className={`flex w-full items-center justify-between gap-2 rounded-xl border border-ink-200 bg-white ${pad} text-left text-sm font-medium text-ink-800 transition-colors hover:border-ink-300 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200`}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-label={ariaLabel}
+          onClick={() => (open ? setOpen(false) : openMenu())}
+          onKeyDown={onKeyDown}
+        >
+          <span className="flex min-w-0 items-center gap-1.5">
+            {(leadingIcon || selected?.icon) && (
+              <span aria-hidden="true">{leadingIcon ?? selected?.icon}</span>
+            )}
+            <span className="truncate">{selected?.label}</span>
+          </span>
+          <span
+            aria-hidden="true"
+            className={`pointer-events-none absolute right-3 text-ink-400 transition-transform ${
+              open ? 'rotate-180' : ''
+            }`}
+          >
+            ▾
+          </span>
+        </button>
+      )}
 
       {open && (
         <ul
@@ -166,7 +186,9 @@ export function Select({
           id={listboxId}
           aria-label={ariaLabel}
           tabIndex={-1}
-          className="absolute z-40 mt-1 max-h-64 w-full min-w-max overflow-auto rounded-xl border border-ink-200 bg-white py-1 shadow-lg"
+          className={`absolute z-40 mt-1 max-h-64 overflow-auto rounded-xl border border-ink-200 bg-white py-1 shadow-lg ${
+            iconOnly ? 'right-0 min-w-max' : 'w-full min-w-max'
+          }`}
         >
           {options.map((option, index) => {
             const isSelected = option.value === value;

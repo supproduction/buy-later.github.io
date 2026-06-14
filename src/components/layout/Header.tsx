@@ -4,6 +4,7 @@ import { useCartStore, selectCartCount } from '../../stores/cart.store';
 import { useTranslation } from '../../i18n';
 import { NAV_ITEMS } from './nav-items';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { SyncBadge } from './SyncBadge';
 import { Icon } from '../ui/Icon';
 
 const CART_ICON =
@@ -78,6 +79,8 @@ export function Header() {
               </NavLink>
             ))}
           </nav>
+
+          <SyncBadge />
 
           <NavLink
             to="/cart"
