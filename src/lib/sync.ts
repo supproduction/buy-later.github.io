@@ -107,7 +107,6 @@ interface CloudSnapshot {
   orders: VirtualOrder[];
   watch: WatchedItem[];
   reflections: Record<string, UserReflection[]>;
-  isEmpty: boolean;
 }
 
 async function pullAll(userId: string): Promise<CloudSnapshot> {
@@ -141,11 +140,6 @@ async function pullAll(userId: string): Promise<CloudSnapshot> {
     orders: orderList,
     watch: watchList,
     reflections: reflectionMap,
-    isEmpty:
-      productList.length === 0 &&
-      orderList.length === 0 &&
-      watchList.length === 0 &&
-      Object.keys(reflectionMap).length === 0,
   };
 }
 
@@ -205,28 +199,18 @@ function nextSequenceFrom(orders: VirtualOrder[]): number {
   return max;
 }
 
-/** Reconcile local <-> cloud once after sign-in. */
+/**
+ * Load cloud data into the app on sign-in. The cloud is the source of truth:
+ * the signed-in account's data replaces whatever is in this browser. Subsequent
+ * local changes are pushed up by `subscribeSync`.
+ */
 export async function reconcile(userId: string): Promise<void> {
   if (!supabase) return;
   try {
     const cloud = await pullAll(userId);
-    const localEmpty =
-      useProductStore.getState().customProducts.length === 0 &&
-      useOrderStore.getState().orders.length === 0 &&
-      useCommunityStore.getState().watch.length === 0 &&
-      Object.keys(useCommunityStore.getState().reflections).length === 0;
-
-    if (cloud.isEmpty && !localEmpty) {
-      await pushAll(userId); // seed cloud from this device's existing data
-      return;
-    }
-
     applyingRemote = true;
     useProductStore.setState({ customProducts: cloud.products });
-    useOrderStore.setState({
-      orders: cloud.orders,
-      sequence: nextSequenceFrom(cloud.orders),
-    });
+    useOrderStore.setState({ orders: cloud.orders, sequence: nextSequenceFrom(cloud.orders) });
     useCommunityStore.setState({ watch: cloud.watch, reflections: cloud.reflections });
     applyingRemote = false;
   } catch (err) {
